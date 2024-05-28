@@ -63,4 +63,5 @@ Route::get('pemesanan/{id_transaksi}', [TransaksiController::class, 'detail'])->
 Route::post('pemesanan/add/insert', [TransaksiController::class, 'store'])->name('transaksi.store');
 
 
-//alfaro ages 1
+
+
