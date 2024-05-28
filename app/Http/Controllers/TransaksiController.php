@@ -47,9 +47,9 @@ class TransaksiController extends Controller
         $user = Auth::user();
         // Mengambil data dtTransaksi beserta data Produk terkait
         $dataKeranjang = dtTransaksi::with('produk')
-        ->where('id_user', $user->id_user)
-        ->whereNULL('id_transaksi')
-        ->get();
+            ->where('id_user', $user->id_user)
+            ->whereNULL('id_transaksi')
+            ->get();
 
         $idPemesanan = $this->generateIdPemesanan();
 
@@ -86,7 +86,7 @@ class TransaksiController extends Controller
     {
         $user = Auth::user();
         $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->where('id_user', $user->id_user)->first();
-        
+
         if (!$transaksi) {
             return redirect('/pemesanan')->with('error', 'Transaksi tidak ditemukan.');
         }
@@ -98,5 +98,27 @@ class TransaksiController extends Controller
             'user' => $user,
             'dataKeranjang' => $dataKeranjang,
         ]);
+    }
+
+    public function destroy($id_transaksi)
+    {
+        $user = Auth::user();
+
+        // Mengambil transaksi yang ingin dihapus
+        $transaksi = Transaksi::where('id_transaksi', $id_transaksi)
+            ->where('id_user', $user->id_user)
+            ->first();
+
+        if (!$transaksi) {
+            return redirect('/pemesanan')->with('error', 'Transaksi tidak ditemukan.');
+        }
+
+        // Menghapus dtTransaksi yang terkait dengan transaksi ini
+        dtTransaksi::where('id_transaksi', $id_transaksi)->delete();
+
+        // Menghapus transaksi
+        $transaksi->delete();
+
+        return redirect('/pemesanan')->with('success', 'Transaksi berhasil dihapus.');
     }
 }

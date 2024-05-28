@@ -7,10 +7,21 @@
     <section class="section mt-3 ">
         <div class="card">
             <div class="card-header bg-dark">
-                <h4 class="p-3 text-center text-white">STATUS {{ $transaksi ->status_bayar }}</h4>
+                <h4 class="p-3 text-center text-white">Status {{ $transaksi->status_bayar }}</h4>
                 <div class="form-group text-center m-3">
-                    <button type="submit" class="btn btn-outline-primary ml-auto w-50 d-inline-block mb-2"><i data-feather="edit"></i>Bayar Pemesanan</button>
-                    <button type="submit" class="btn btn-outline-danger ml-auto w-50 d-inline-block"><i data-feather="edit"></i>Batalkan Pemesanan</button>
+                    <form action="{{route('transaksi.destroy', $transaksi->id_transaksi)}}" method="post">
+                        @csrf 
+                        @method('DELETE')
+                        <a href="" class="btn btn-outline-primary ml-auto w-50 d-inline-block mb-2" data-bs-toggle="modal" data-bs-target="#inlineForm">
+                            Bayar Pemesanan
+                        </a>
+
+                        @if ($transaksi->status_bayar == "Belum Dibayar" )
+                        <button type="submit" class="btn btn-outline-danger ml-auto w-50 d-inline-block">
+                            Batalkan Pemesanan
+                        </button>
+                        @endif
+                    </form>
                 </div>
             </div>
             <div class="card-header bg-success">
@@ -97,9 +108,9 @@
                         </div>
                     </div>
                     <br>
-                    <div class="form-group text-center">
+                    <!-- <div class="form-group text-center">
                         <button type="submit" class="btn btn-success ml-auto w-50"><i data-feather="edit"></i>Tambah</button>
-                    </div>
+                    </div> -->
                 </form>
                 <br>
             </div>

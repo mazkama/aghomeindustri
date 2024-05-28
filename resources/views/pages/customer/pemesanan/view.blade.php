@@ -32,9 +32,7 @@
                 <td>{{ $data->total_bayar }}</td>
                 <td>{{ $data->status_bayar }}</td>
                 <td>
-                    <form action=" " method="post">
-                        <button type="submit" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                    </form>
+                    <a href="{{ route('transaksi.detail', $data->id_transaksi) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a> 
                 </td>
             </tr>
             @endforeach

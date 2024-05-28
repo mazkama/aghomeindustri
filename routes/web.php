@@ -61,3 +61,5 @@ Route::get('pemesanan', [TransaksiController::class, 'index'])->name('transaksi.
 Route::get('pemesanan/add', [TransaksiController::class, 'create'])->name('transaksi.create');
 Route::get('pemesanan/{id_transaksi}', [TransaksiController::class, 'detail'])->name('transaksi.detail'); 
 Route::post('pemesanan/add/insert', [TransaksiController::class, 'store'])->name('transaksi.store');
+Route::delete('pemesanan/{id_transaksi}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
+
