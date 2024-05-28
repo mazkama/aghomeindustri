@@ -6,6 +6,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\PembayaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,3 +64,6 @@ Route::get('pemesanan/{id_transaksi}', [TransaksiController::class, 'detail'])->
 Route::post('pemesanan/add/insert', [TransaksiController::class, 'store'])->name('transaksi.store');
 Route::delete('pemesanan/{id_transaksi}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
 
+//Route Pemesanan
+Route::get('/pembayaran/create/{id_transaksi}', [PembayaranController::class, 'create'])->name('pembayaran.create');
+Route::post('/pembayaran/store/{id_transaksi}', [PembayaranController::class, 'store'])->name('pembayaran.store');

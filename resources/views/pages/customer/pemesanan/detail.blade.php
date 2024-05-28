@@ -9,20 +9,23 @@
             <div class="card-header bg-dark">
                 <h4 class="p-3 text-center text-white">Status {{ $transaksi->status_bayar }}</h4>
                 <div class="form-group text-center m-3">
+                   
                     <form action="{{route('transaksi.destroy', $transaksi->id_transaksi)}}" method="post">
-                        @csrf 
+                        @csrf
                         @method('DELETE')
+                        @if ($transaksi->status_bayar == "Belum Dibayar" )
                         <a href="" class="btn btn-outline-primary ml-auto w-50 d-inline-block mb-2" data-bs-toggle="modal" data-bs-target="#inlineForm">
                             Bayar Pemesanan
-                        </a>
-
-                        @if ($transaksi->status_bayar == "Belum Dibayar" )
+                        </a> 
+                        
                         <button type="submit" class="btn btn-outline-danger ml-auto w-50 d-inline-block">
                             Batalkan Pemesanan
                         </button>
                         @endif
                     </form>
                 </div>
+
+                @include('modal.modalPembayaran')
             </div>
             <div class="card-header bg-success">
                 <h4 class="card-title pt-2 text-center">ID Transaksi #{{$transaksi->id_transaksi}}</h4>

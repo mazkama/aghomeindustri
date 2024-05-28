@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produk;
 use Illuminate\Support\Facades\Auth;
 use App\Models\dtTransaksi;
 use App\Models\Transaksi;
