@@ -22,7 +22,7 @@
                         <a href="index.html"><img src="assets/images/logo/logo.png" alt="Logo"></a>
                     </div> -->
                     <h1 class="auth-title" style="color:#59AB6E">Register.</h1>
-                    <p class="auth-subtitle mb-5">Please fill in the form below to create an account.</p>
+                    <p class="auth-subtitle mb-5">Tolong isikan from di bawah ini untuk membuat akun.</p>
 
                     <form action="{{ url('create') }}" method="POST">
                         @csrf
@@ -80,7 +80,7 @@
                         <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5" style="background-color: #59AB6E; border-color:#59AB6E">Register</button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
-                        <p class="text-gray-600">Sudah memiliki akun? <a href="" class="font-bold" style="color: #59AB6E;">Log in</a>.</p>
+                        <p class="text-gray-600">Sudah memiliki akun? <a href="{{url('login')}}" class="font-bold" style="color: #59AB6E;">Log in</a>.</p>
                     </div>
                 </div>
             </div>

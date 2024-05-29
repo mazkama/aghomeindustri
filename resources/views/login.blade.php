@@ -22,7 +22,7 @@
                         <a href="index.html"><img src="assets/images/logo/logo.png" alt="Logo"></a>
                     </div> -->
                     <h1 class="auth-title" style="color:#59AB6E">Log in.</h1>
-                    <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
+                    <p class="auth-subtitle mb-5">Silakan masuk dengan data yang Anda masukkan saat pendaftaran.</p>
 
                     <form action="loginsukses" method="POST">
                         @csrf
