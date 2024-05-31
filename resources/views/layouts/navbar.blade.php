@@ -41,7 +41,7 @@
                             <a class="nav-link" href="{{ url('beranda') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Tentang</a>
+                            <a class="nav-link" href="/tentang">Tentang</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/belanja">Belanja</a>
