@@ -52,11 +52,11 @@
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
-                            <h1 class="h1">Proident occaecat</h1>
-                            <h3 class="h2">Aliquip ex ea commodo consequat</h3>
+                            <h1 class="h1">Solusi Praktis Dan Elegan Untuk Kebutuhan Anda</h1>
+                            <h3 class="h2">Menjadikannya pilihan sempurna untuk acara apapun.</h3>
                             <p>
-                                You are permitted to use this Zay CSS template for your commercial websites.
-                                You are <strong>not permitted</strong> to re-distribute the template ZIP file in any kind of template collection websites.
+                            Percayakan kebutuhan kemasan nasi Anda pada AGHome Industri,
+                            karena kami mengutamakan <strong>kualitas</strong> dan <strong>kepuasan pelanggan.</strong>
                             </p>
                         </div>
                     </div>
@@ -71,11 +71,10 @@
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
-                            <h1 class="h1">Repr in voluptate</h1>
-                            <h3 class="h2">Ullamco laboris nisi ut </h3>
+                            <h1 class="h1">Untuk Momen Spesial Dalam Hidup Anda</h1>
+                            <h3 class="h2">Desain menawan dan material berkualitas menambah kesan istimewa pada pernikahan Anda.</h3>
                             <p>
-                                We bring you 100% free CSS templates for your websites.
-                                If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.
+                            Jadikan setiap detail pernikahan Anda sempurna dengan produk unggulan dari AGHome Industri, pilihan terbaik untuk hantaran seserahan Anda.
                             </p>
                         </div>
                     </div>
