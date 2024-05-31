@@ -162,7 +162,7 @@
                     <!--Controls-->
                     <div class="col-1 align-self-center">
                         <a class="h1" href="#templatemo-slide-brand" role="button" data-bs-slide="next">
-                            <i class="text-light fas fa-chevron-right"></i>
+                            //<i class="text-light fas fa-chevron-right"></i>
                         </a>
                     </div>
                     <!--End Controls-->

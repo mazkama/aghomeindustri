@@ -10,7 +10,7 @@ class dtTransaksi extends Model
     use HasFactory;
     protected $table = 'detail_tr';
     protected $primaryKey = 'id_dt_tr';
-    protected $fillable = ['id_dt_tr','id_user','kode_produk','jumlah_produk','ukuran','harga']; 
+    protected $fillable = ['id_dt_tr','id_user','id_transaksi', 'kode_produk','jumlah_produk','ukuran','harga']; 
 
     public function produk()
     {
