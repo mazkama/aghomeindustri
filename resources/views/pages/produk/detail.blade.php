@@ -212,8 +212,8 @@
     // Tambahkan event listener untuk tombol minus
     btnMinus.addEventListener('click', function() {
         // Kurangi nilai jumlah_produk jika nilainya lebih dari 1
-        if (jumlahProduk.value > 1) {
-            jumlahProduk.value--;
+        if (jumlahProduk.value => 1) {
+            jumlahProduk.value = parseInt(jumlahProduk.value) - 1;
             varValue.textContent = jumlahProduk.value;
         }
     });
@@ -221,7 +221,7 @@
     // Tambahkan event listener untuk tombol plus
     btnPlus.addEventListener('click', function() {
         // Tambahkan nilai jumlah_produk
-        jumlahProduk.value++;
+        jumlahProduk.value = parseInt(jumlahProduk.value) + 1;
         varValue.textContent = jumlahProduk.value;
     });
 </script>

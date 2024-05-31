@@ -55,7 +55,7 @@
                             <h1 class="h1 text-success">Solusi Praktis Dan Elegan Untuk Kebutuhan Anda.</h1>
                             <h3 class="h2">Menjadikannya pilihan sempurna untuk acara apapun.</h3>
                             <p>
-                            Percayakan kebutuhan kemasan nasi Anda pada AGHome Industri,
+                            Percayakan kebutuhan kemasan nasi Anda pada AG Home Industri,
                             karena kami mengutamakan <strong>kualitas</strong> dan <strong>kepuasan pelanggan.</strong>
                             </p>
                         </div>
