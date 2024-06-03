@@ -21,6 +21,9 @@
     <!-- Slick -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/slick.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/slick-theme.css')}}">
+
+    <!-- Sweetalert -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
 </head>
 
 <body>
@@ -47,6 +50,9 @@
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
     <script src="{{asset('assets/js/main.js')}}"></script>
+
+    <!-- Sweetalert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 </body>
 
 </html>

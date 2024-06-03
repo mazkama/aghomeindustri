@@ -38,6 +38,11 @@ Route::post('logout', [SessionController::class, 'logout'])->name('logout');
 
 //Route Customer
 Route::get('beranda', [CustomerController::class, 'landing']);
+Route::get('customer/profile', [CustomerController::class, 'show'])->name('customer.profile');
+Route::get('customer/profile/password', [CustomerController::class, 'password'])->name('customer.password');
+Route::put('cutomer/update-profile', [CustomerController::class, 'updateProfile'])->name('customer.update-profile');
+Route::put('cutomer/update-password', [CustomerController::class, 'updatePassword'])->name('customer.update-password');
+
 
 //Route Login/Register
 Route::get('register', [SessionController::class, 'register']);
