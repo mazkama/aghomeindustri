@@ -68,7 +68,7 @@
                 
                         <span id="data-keranjang" class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">9 </span> 
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" onclick="toggleSettings()">
+                    <a id="iconmenu" class="nav-icon position-relative text-decoration-none" onclick="toggleSettings()">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
                         <!-- Card -->
@@ -76,13 +76,13 @@
                             <div class="card-body">
                                 <!-- Settings List -->
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item" id="settingsItem" onmouseover="changeColor(this)" onmouseout="resetColor(this)">
+                                    <li class="list-group-item" id="settingsItem" onmouseover="changeColor(this)" onmouseout="resetColor(this)" onclick="openSettings()" style="color:#000000">
                                         <div style="display: flex; align-items: center;">
                                             <i class="fa fa-fw fa-cog text-dark mr-2"></i>
                                             <span>Settings</span>
                                         </div>
                                     </li>
-                                    <li class="list-group-item" id="logoutBtn" onmouseover="changeColor(this)" onmouseout="resetColor(this)" onclick="logout()">
+                                    <li class="list-group-item" id="logoutBtn" onmouseover="changeColor(this)" onmouseout="resetColor(this)" onclick="logout()" style="color:#000000">
                                         <div style="display: flex; align-items: center;">
                                             <i class="fa fa-fw fa-sign-out-alt text-dark mr-2"></i>
                                             <span>Logout</span>
@@ -110,11 +110,16 @@
         }
     }
     function changeColor(item) {
-        item.style.color = '#59AB6E';
+        item.getElementsByTagName("span")[0].style.color = '#59AB6E'; // Mengubah warna teks menu yang diarahkan
     }
 
     function resetColor(item) {
-        item.style.color = '';
+        item.getElementsByTagName("span")[0].style.color = '#000000'; // Mengembalikan warna teks ke warna aslinya saat kursor tidak mengarah
+    }
+
+    function openSettings() {
+        // Lakukan sesuatu ketika tombol Settings diklik
+        console.log("Settings clicked");
     }
 
     function logout() {
@@ -124,5 +129,22 @@
         form.innerHTML = `@csrf`;
         document.body.appendChild(form);
         form.submit();
+        console.log("Logout clicked");
     }
+
 </script>
+
+<style>
+    #iconmenu {
+        cursor: pointer;
+    }
+
+    #settingsItem, #logoutBtn {
+        cursor: pointer;
+    }
+
+    #settingsItem span, #logoutBtn span {
+        cursor: pointer;
+    }
+</style>
+
