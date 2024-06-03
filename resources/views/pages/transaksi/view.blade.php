@@ -61,7 +61,7 @@
                                 <td>Alan Sanjaya</td>
                                 <td>21-12-20024</td>
                                 <td>Rp. 200000</td>
-                                <td>Belum Dibayar</td>
+                                <td><span class="badge bg-success">Belum Dibayar</span></td>
                                 <td>
                                     <a href="" class="btn btn-warning"><i class="bi bi-pencil-square" aria-hidden="true"></i></a>
                                 </td>
