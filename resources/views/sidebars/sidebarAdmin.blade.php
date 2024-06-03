@@ -44,7 +44,7 @@
                     </a>
                 <li class="sidebar-item">
                     <a href="{{  url('kelola-produk')   }}  " class='sidebar-link'>
-                        <i class="bi bi-bucket"></i>
+                        <i class="bi bi-person"></i>
                         <span class="pt-1">Profil</span>
                     </a>
             </ul>
