@@ -75,3 +75,11 @@ Route::get('/kelola-transaksi/edit/{id}', [KelolaTransaksiController::class, 'ed
 Route::put('/kelola-transaksi/update/{id}', [KelolaTransaksiController::class, 'update'])->name('kelolaTransaksi.update');
 Route::post('/kelola-transaksi/{id}/update-status', [KelolaTransaksiController::class, 'updateStatus'])->name('kelolaTransaksi.updateStatus');
 Route::delete('/kelola-transaksi/{id_transaksi}', [TransaksiController::class, 'delete'])->name('kelolaTransaksi.delete');
+
+
+
+//Route Profil Customer
+Route::get('customer/profile', [CustomerController::class, 'show'])->name('customer.profile');
+Route::get('customer/profile/password', [CustomerController::class, 'password'])->name('customer.password');
+Route::put('cutomer/update-profile', [CustomerController::class, 'updateProfile'])->name('customer.update-profile');
+Route::put('cutomer/update-password', [CustomerController::class, 'updatePassword'])->name('customer.update-password');
