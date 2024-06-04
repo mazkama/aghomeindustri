@@ -119,6 +119,12 @@
 
     function openSettings() {
         // Lakukan sesuatu ketika tombol Settings diklik
+        const form = document.createElement('form');
+        form.method = 'GET';
+        form.action = "{{ route('customer.profile') }}";
+        form.innerHTML = `@csrf`;
+        document.body.appendChild(form);
+        form.submit();
         console.log("Settings clicked");
     }
 
