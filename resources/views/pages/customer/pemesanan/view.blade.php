@@ -29,14 +29,20 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $data->id_transaksi }}</td>
                 <td>{{ $data->created_at }}</td>
-                <td>{{ $data->total_bayar }}</td>
+                <td>
+                    @if($data->total_bayar == null)
+                    -
+                    @else
+                    {{ $data->total_bayar }}
+                    @endif
+                </td>
                 <td>{{ $data->status_bayar }}</td>
                 <td>
                     <a href="{{ route('transaksi.detail', $data->id_transaksi) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a> 
                 </td>
             </tr>
             @endforeach
-            @endif
+            @endif  
         </tbody>
     </table>
 </div>

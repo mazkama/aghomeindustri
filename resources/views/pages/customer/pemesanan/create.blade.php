@@ -33,9 +33,8 @@
                         </tr>
                         @else
                         @foreach ($dataKeranjang as $item)
-                        @php
-                        $subtotal = $item->harga * $item->jumlah_produk; // Menghitung subtotal dengan memperhitungkan jumlah produk
-                        $total += $subtotal;
+                        @php 
+                        $total += $item->harga;
                         @endphp
                         <tr>
                             <td>{{ $loop->iteration }}</td>
@@ -44,7 +43,7 @@
                             <td>{{ $item->produk->ukuran }}</td>
                             <td>{{ $item->produk->harga }}</td>
                             <td>{{ $item->jumlah_produk }}</td>
-                            <td>{{ $subtotal }}</td> <!-- Menampilkan subtotal -->
+                            <td>{{ $item->harga }}</td>  
                         </tr>
                         @endforeach
                         @endif
@@ -56,7 +55,6 @@
                     @csrf
                     @php
                     $biayaPengiriman = 25000; 
-                    $totalPembayaran = $total + $biayaPengiriman;
                     @endphp
                     <input type="hidden" name="id_pesanan" value="{{ $id_pemesanan }}"> <!-- Input tak terlihat untuk ID pesanan -->
                     <div class="row">
@@ -69,23 +67,15 @@
                                 <label for="nomor_hp">Nomor HP</label>
                                 <input type="text" class="form-control @error('nomor_hp') is-invalid @enderror" id="nomor_hp" name="nomor_hp" placeholder="Masukkan Nomor HP" value="{{ $user->nohp }}" readonly>
                             </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
                             <div class="form-group mb-3">
                                 <label for="alamat_lengkap" class="form-label">Alamat Lengkap</label>
                                 <textarea class="form-control @error('alamat_lengkap') is-invalid @enderror" id="alamat_lengkap" name="alamat_lengkap" rows="3" readonly>{{ $user->alamat }}</textarea>
                             </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
                             <div class="form-group mb-3">
-                                <label for="total_produk">Total Produk</label>
-                                <input type="text" class="form-control @error('total_produk') is-invalid @enderror" id="total_produk" name="total_produk" placeholder="Masukkan Total Produk" value="{{ $total }}" readonly>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="biaya_pengiriman">Biaya Pengiriman</label>
-                                <input type="text" class="form-control @error('biaya_pengiriman') is-invalid @enderror" id="biaya_pengiriman" name="biaya_pengiriman" placeholder="Masukkan Biaya Pengiriman" value="25000" readonly>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="total_pembayaran">Total Pembayaran</label>
-                                <input type="text" class="form-control @error('total_pembayaran') is-invalid @enderror" id="total_pembayaran" name="total_pembayaran" placeholder="Total Pembayaran" value="{{ $totalPembayaran }}" readonly>
+                                <label for="subtotal_produk">Subtotal Produk</label>
+                                <input type="text" class="form-control @error('subtotal_produk') is-invalid @enderror" id="subtotal_produk" name="subtotal_produk" placeholder="Masukkan Subtotal Produk" value="{{ $total }}" readonly>
                             </div>
                         </div>
                     </div>

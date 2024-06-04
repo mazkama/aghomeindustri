@@ -1,5 +1,5 @@
 <!-- Edit Mahasiswa Form Modal -->
-<div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+<div class="modal fade text-left" id="editProduk{{$data->kode_produk}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="overflow-y: auto;" role="document">
         <div class="modal-content"style="overflow-y: auto;">
             <div class="modal-header">
@@ -19,18 +19,18 @@
                     </div>
                     <div class="form-group">
                         <label for="deskripsi_produk" class="form-label">Deskripsi Produk</label>
-                        <textarea class="form-control @error('deskripsi_produk') is-invalid @enderror" id="deskripsi_produk" name="deskripsi_produk" rows="3">{{ old('deskripsi_produk') }}{{ $data->deskripsi_produk }}</textarea>
+                        <textarea class="form-control @error('deskripsi_produk') is-invalid @enderror" id="deskripsi_produk" name="deskripsi_produk" rows="3">{{ $data->deskripsi_produk }}</textarea>
                         @error('deskripsi_produk')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="stok">Stok Produk<span class="text-danger">*</span></label>
-                        <input class="form-control" type="text" name="stok" id="no_stokhp" value="{{ $data->stok }}">
+                        <input class="form-control" type="number" name="stok" id="stok" value="{{ $data->stok }}">
                     </div>
                     <div class="form-group">
                         <label for="harga">Harga Produk<span class="text-danger">*</span></label>
-                        <input class="form-control" type="text" name="harga" id="harga" value="{{ $data->harga }}">
+                        <input class="form-control" type="number" name="harga" id="harga" value="{{ $data->harga }}">
                     </div>
                     <div class="form-group">
                         <label for="jenis_kelamin">Ukuran Produk <span class="text-danger">*</span></label>
@@ -58,6 +58,6 @@
 <script>
     function resetForm() {
         // Assuming your form has an ID of "editMahasiswaForm"
-        document.getElementById('editProdukForm').reset();
+        document.getElementById('editProduk{{$data->kode_produk}}').reset();
     }
 </script>

@@ -51,6 +51,7 @@ class KeranjangController extends Controller
             $data->id_user = $user->id_user;
             $data->kode_produk = $request->kode_produk;
             $data->jumlah_produk = $request->jumlah_produk;
+            $data->ukuran = $request->ukuran;
             $data->harga = $subTotal;
             $data->save();
         }

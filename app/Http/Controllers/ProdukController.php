@@ -89,21 +89,21 @@ class ProdukController extends Controller
 
     public function update(Request $request, $kodeProduk)
     {
-        $this->validate($request, [
-            'nama_produk' => 'required|regex:/^[^0-9]+$/|unique:produk',
-            'deskripsi_produk' => 'required',
-            'stok' => 'required|numeric',
-            'harga' => 'required|numeric',
-            'ukuran' => 'required',
-            'foto' => 'nullable|file|mimes:jpeg,png,mp4|max:2048', // Dua tanda || dan required dihapus
-        ]);
+        // $this->validate($request, [
+        //     'nama_produk' => 'required|regex:/^[^0-9]+$/|unique:produk',
+        //     'deskripsi_produk' => 'required',
+        //     'stok' => 'required|numeric',
+        //     'harga' => 'required|numeric',
+        //     'ukuran' => 'required',
+        //     'foto' => 'nullable|file|mimes:jpeg,png,mp4|max:2048', // Dua tanda || dan required dihapus
+        // ]);
 
         $data = Produk::find($kodeProduk);
         $data->nama_produk = $request->nama_produk;
         $data->deskripsi_produk = $request->deskripsi_produk;
         $data->stok = $request->stok;
         $data->harga = $request->harga;
-        $data->ukuran = $request->ukuran;
+        $data->ukuran = $request->ukuran; 
 
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');

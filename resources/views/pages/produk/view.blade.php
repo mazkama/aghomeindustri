@@ -55,12 +55,12 @@
                                 <td>
                                     <form action="{{ route('produk.delete', $data->kode_produk) }}" method="post">
                                         @csrf
-                                        <a href="{{ route('produk.edit', $data->kode_produk) }}" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#inlineForm">
+                                        <a href="{{ route('produk.edit', $data->kode_produk) }}" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#editProduk{{$data->kode_produk}}">
                                             <i class="fa-fw select-all fas"></i>
                                         </a>
                                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                     </form>
-                                    @include('modal.modalProduk')
+                                    @include('modal.modalProduk',['dataProduk'=>$data])
                                 </td>
                             </tr>
                             @endforeach

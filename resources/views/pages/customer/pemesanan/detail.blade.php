@@ -9,20 +9,20 @@
             <div class="card-header bg-dark">
                 <h4 class="p-3 text-center text-white">Status {{ $transaksi->status_bayar }}</h4>
                 <div class="form-group text-center m-3">
-                   
-                    <form action="{{route('transaksi.destroy', $transaksi->id_transaksi)}}" method="post">
+
+                    @if ($transaksi->status_bayar == "Menunggu Pembayaran" || $transaksi->status_bayar == "Pembayaran Gagal")
+                    <form action="{{ route('transaksi.update', $transaksi->id_transaksi) }}" method="POST">
                         @csrf
-                        @method('DELETE')
-                        @if ($transaksi->status_bayar == "Belum Dibayar" )
-                        <a href="" class="btn btn-outline-primary ml-auto w-50 d-inline-block mb-2" data-bs-toggle="modal" data-bs-target="#inlineForm">
-                            Bayar Pemesanan
-                        </a> 
-                        
+                        @method('PUT')
+                        <a href="{{ route('pembayaran.create', $transaksi->id_transaksi) }}" class="btn btn-outline-primary ml-auto w-50 d-inline-block mb-2" data-bs-toggle="modal" data-bs-target="#inlineForm">
+                            Bayar Pesanan
+                        </a>
                         <button type="submit" class="btn btn-outline-danger ml-auto w-50 d-inline-block">
-                            Batalkan Pemesanan
+                            Batalkan Pesanan
                         </button>
-                        @endif
-                    </form>
+                    </form> 
+                    @endif
+
                 </div>
 
                 @include('modal.modalPembayaran')
@@ -45,19 +45,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                        $total = 0;
-                        @endphp
                         @if($dataKeranjang->isEmpty())
                         <tr>
                             <td colspan="8" class="text-center">Data belum tersedia</td>
                         </tr>
                         @else
                         @foreach ($dataKeranjang as $item)
-                        @php
-                        $subtotal = $item->harga * $item->jumlah_produk; // Menghitung subtotal dengan memperhitungkan jumlah produk
-                        $total += $subtotal;
-                        @endphp
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td><img src="{{ asset('storage/' . $item->produk->foto) }}" width="100" height="100" alt=""></td>
@@ -65,7 +58,7 @@
                             <td>{{ $item->produk->ukuran }}</td>
                             <td>{{ $item->produk->harga }}</td>
                             <td>{{ $item->jumlah_produk }}</td>
-                            <td>{{ $subtotal }}</td> <!-- Menampilkan subtotal -->
+                            <td>{{ $item->harga }}</td> <!-- Menampilkan subtotal -->
                         </tr>
                         @endforeach
                         @endif
@@ -75,10 +68,6 @@
             <div class="card-body mt-3">
                 <form action="" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @php
-                    $biayaPengiriman = 25000;
-                    $totalPembayaran = $total + $biayaPengiriman;
-                    @endphp
                     <input type="hidden" name="id_pesanan" value="{{ $transaksi->id_transaksi }}"> <!-- Input tak terlihat untuk ID pesanan -->
                     <div class="row">
                         <div class="col-md-6">
@@ -97,16 +86,16 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group mb-3">
-                                <label for="total_produk">Total Produk</label>
-                                <input type="text" class="form-control @error('total_produk') is-invalid @enderror" id="total_produk" name="total_produk" placeholder="Masukkan Total Produk" value="{{ $total }}" readonly>
+                                <label for="total_produk">Subtotal Produk</label>
+                                <input type="text" class="form-control @error('total_produk') is-invalid @enderror" id="total_produk" name="total_produk" placeholder="Masukkan Total Produk" value="{{ $transaksi->subtotal_produk }}" readonly>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="biaya_pengiriman">Biaya Pengiriman</label>
-                                <input type="text" class="form-control @error('biaya_pengiriman') is-invalid @enderror" id="biaya_pengiriman" name="biaya_pengiriman" placeholder="Masukkan Biaya Pengiriman" value="25000" readonly>
+                                <input type="text" class="form-control @error('biaya_pengiriman') is-invalid @enderror" id="biaya_pengiriman" name="biaya_pengiriman" placeholder="Masukkan Biaya Pengiriman" value="{{ $transaksi->biaya_pengiriman }}" readonly>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="total_pembayaran">Total Pembayaran</label>
-                                <input type="text" class="form-control @error('total_pembayaran') is-invalid @enderror" id="total_pembayaran" name="total_pembayaran" placeholder="Total Pembayaran" value="{{ $totalPembayaran }}" readonly>
+                                <label for="total_bayar">Total Pembayaran</label>
+                                <input type="text" class="form-control @error('total_pembayaran') is-invalid @enderror" id="total_bayar" name="total_bayar" placeholder="Total Pembayaran" value="{{ $transaksi->total_bayar }}" readonly>
                             </div>
                         </div>
                     </div>

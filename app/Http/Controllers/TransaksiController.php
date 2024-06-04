@@ -68,8 +68,8 @@ class TransaksiController extends Controller
         $data = new Transaksi();
         $data->id_transaksi = $request->id_pesanan;
         $data->id_user = $user->id_user;
-        $data->total_bayar = $request->total_pembayaran;
-        $data->status_bayar = "Belum Dibayar";
+        $data->subtotal_produk = $request->subtotal_produk;  
+        $data->status_bayar = "Menunggu Konfirmasi";
         $data->save();
 
         // Update id_transaksi for each item in the cart
@@ -97,6 +97,19 @@ class TransaksiController extends Controller
             'user' => $user,
             'dataKeranjang' => $dataKeranjang,
         ]);
+    }
+
+    public function update(Request $request, $id_transaksi)
+    { 
+
+        // Cari transaksi
+        $transaksi = Transaksi::find($id_transaksi);
+
+        // Update status bayar transaksi menjadi "Dibatalkan"
+        $transaksi->status_bayar = "Dibatalkan";
+        $transaksi->update();
+
+        return redirect('/pemesanan')->with('success', 'Status pemesanan berhasil diubah menjadi Dibatalkan.');
     }
 
     public function destroy($id_transaksi)

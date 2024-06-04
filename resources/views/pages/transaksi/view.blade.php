@@ -44,39 +44,42 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $total = 0;
+                            @endphp
+                            @if($dataTransaksi->isEmpty())
                             <tr>
-                                <td>1</td>
-                                <td>8439236429834</td>
-                                <td>Alan Sanjaya</td>
-                                <td>21-12-20024</td>
-                                <td>Rp. 200000</td>
-                                <td>Belum Dibayar</td>
-                                <td>
-                                    <a href="" class="btn btn-warning"><i class="bi bi-pencil-square" aria-hidden="true"></i></a>
-                                </td>
+                                <td colspan="6" class="text-center">Data belum tersedia</td>
                             </tr>
+                            @else
+                            @foreach ($dataTransaksi as $data)
                             <tr>
-                                <td>1</td>
-                                <td>8439236429834</td>
-                                <td>Alan Sanjaya</td>
-                                <td>21-12-20024</td>
-                                <td>Rp. 200000</td>
-                                <td><span class="badge bg-success">Belum Dibayar</span></td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $data->id_transaksi }}</td>
+                                <td>{{ $data->user->nama }}</td>
+                                <td>{{ $data->created_at }}</td>
                                 <td>
-                                    <a href="" class="btn btn-warning"><i class="bi bi-pencil-square" aria-hidden="true"></i></a>
+                                    @if($data->total_bayar == null)
+                                    -
+                                    @else
+                                    {{ $data->total_bayar }}
+                                    @endif
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>8439236429834</td>
-                                <td>Alan Sanjaya</td>
-                                <td>21-12-20024</td>
-                                <td>Rp. 200000</td>
-                                <td>Belum Dibayar</td>
+                                <td><span class="badge {{ $data->status_bayar === 'Menunggu Konfirmasi' ? 'bg-warning' : ($data->status_bayar === 'Menunggu Pembayaran' ? 'bg-info' : ($data->status_bayar === 'Menunggu Konfirmasi Pembayaran' ? 'bg-primary' : ($data->status_bayar === 'Pembayaran Gagal' ? 'bg-danger' : ($data->status_bayar === 'Diproses' ? 'bg-secondary' : ($data->status_bayar === 'Dikirim' ? 'bg-dark' : ($data->status_bayar === 'Selesai' ? 'bg-success' : 'bg-secondary')))))) }}">{{ $data->status_bayar }}</span></td>
+
                                 <td>
-                                    <a href="" class="btn btn-warning"><i class="bi bi-pencil-square" aria-hidden="true"></i></a>
+                                    
+                                    <form action="{{ route('kelolaTransaksi.delete', $data->id_transaksi) }}" method="post">
+                                        @csrf
+                                        <a href="{{ route('kelolaTransaksi.edit', $data->id_transaksi) }}" class="btn btn-warning"><i class="bi bi-pencil-square" aria-hidden="true"></i></a>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus transaksi ini?')"><i class="bi bi-trash" aria-hidden="true"></i></button>
+                                    </form>
                                 </td>
+
+                                
                             </tr>
+                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>

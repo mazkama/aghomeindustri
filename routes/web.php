@@ -61,13 +61,17 @@ Route::put('keranjang/update/{id_dt_tr}', [KeranjangController::class, 'update']
 //Route Pemesanan
 Route::get('pemesanan', [TransaksiController::class, 'index'])->name('transaksi.view'); 
 Route::get('pemesanan/add', [TransaksiController::class, 'create'])->name('transaksi.create');
-Route::get('pemesanan/{id_transaksi}', [TransaksiController::class, 'detail'])->name('transaksi.detail'); 
-Route::post('pemesanan/add/insert', [TransaksiController::class, 'store'])->name('transaksi.store');
-Route::delete('pemesanan/{id_transaksi}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
+Route::get('pemesanan/detail/{id_transaksi}', [TransaksiController::class, 'detail'])->name('transaksi.detail'); 
+Route::post('pemesanan/add/insert', [TransaksiController::class, 'store'])->name('transaksi.store'); 
+Route::put('pemesanan/update/{id_transaksi}', [TransaksiController::class, 'update'])->name('transaksi.update');
 
 //Route Pemesanan
 Route::get('/pembayaran/create/{id_transaksi}', [PembayaranController::class, 'create'])->name('pembayaran.create');
 Route::post('/pembayaran/store/{id_transaksi}', [PembayaranController::class, 'store'])->name('pembayaran.store');
 
 //Route Kelola Transaksi
-Route::get('kelola-transaksi', [KelolaTransaksiController::class, 'index'])->name('kelolaTransaksi.view');
+Route::get('kelola-transaksi', [KelolaTransaksiController::class, 'index'])->name('kelolaTransaksi.view'); 
+Route::get('/kelola-transaksi/edit/{id}', [KelolaTransaksiController::class, 'edit'])->name('kelolaTransaksi.edit');
+Route::put('/kelola-transaksi/update/{id}', [KelolaTransaksiController::class, 'update'])->name('kelolaTransaksi.update');
+Route::post('/kelola-transaksi/{id}/update-status', [KelolaTransaksiController::class, 'updateStatus'])->name('kelolaTransaksi.updateStatus');
+Route::delete('/kelola-transaksi/{id_transaksi}', [TransaksiController::class, 'delete'])->name('kelolaTransaksi.delete');

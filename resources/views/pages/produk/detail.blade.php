@@ -127,6 +127,7 @@
                             <form action="{{ route('keranjang.store') }}" method="POST">
                             @csrf
                                 <input type="hidden" name="kode_produk" value="{{$data->kode_produk}}">
+                                <input type="hidden" name="ukuran" value="{{$data->ukuran}}">
                                 <div class="row">
                                     <!-- <div class="col-auto">
                                         <ul class="list-inline pb-3">
@@ -212,7 +213,7 @@
     // Tambahkan event listener untuk tombol minus
     btnMinus.addEventListener('click', function() {
         // Kurangi nilai jumlah_produk jika nilainya lebih dari 1
-        if (jumlahProduk.value => 1) {
+        if (jumlahProduk.value > 1) {
             jumlahProduk.value = parseInt(jumlahProduk.value) - 1;
             varValue.textContent = jumlahProduk.value;
         }

@@ -27,7 +27,7 @@
                             <a href="{{  url('kelola-produk')   }}">Lihat Produk</a>
                         </li>
                     </ul>
-                <li class="sidebar-item  {{ request()->is('kelola-transaksi') ? 'active' : '' }}">
+                <li class="sidebar-item  {{ request()->is('kelola-transaksi*' ) ? 'active' : '' }}">
                     <a href="{{  url('kelola-transaksi')   }}  " class='sidebar-link'>
                         <i class="bi bi-cart3"></i>
                         <span class="pt-1">Data Transaksi</span>

@@ -50,7 +50,7 @@ class PembayaranController extends Controller
         $pembayaran->save();
 
         // Update status bayar transaksi
-        $transaksi->status_bayar = "Waiting Konfirmasi";
+        $transaksi->status_bayar = "Menunggu Konfirmasi Pembayaran";
         $transaksi->save();
 
         return redirect('/pemesanan')->with('success', 'Pembayaran berhasil ditambahkan.');
