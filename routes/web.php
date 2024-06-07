@@ -6,7 +6,8 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\PembayaranController; 
+use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\KelolaTransaksiController;
 
 /*
@@ -83,9 +84,17 @@ Route::post('/kelola-transaksi/{id}/update-status', [KelolaTransaksiController::
 Route::delete('/kelola-transaksi/{id_transaksi}', [TransaksiController::class, 'delete'])->name('kelolaTransaksi.delete');
 
 
-
 //Route Profil Customer
 Route::get('customer/profile', [CustomerController::class, 'show'])->name('customer.profile');
 Route::get('customer/profile/password', [CustomerController::class, 'password'])->name('customer.password');
 Route::put('cutomer/update-profile', [CustomerController::class, 'updateProfile'])->name('customer.update-profile');
 Route::put('cutomer/update-password', [CustomerController::class, 'updatePassword'])->name('customer.update-password');
+
+
+//Route Metode Pembayaran
+Route::get('kelola-metode-pembayaran', [MetodePembayaranController::class, 'index']);
+Route::get('tambah-metode-pembayaran', [MetodePembayaranController::class, 'create']);
+Route::post('metode-pembayaran', [MetodePembayaranController::class, 'store'])->name('tambah-mp');
+Route::get('metode-pembayaran/edit/{id}', [MetodePembayaranController::class, 'edit'])->name('edit-mp');
+Route::put('metode-pembayaran/edit/{id}', [MetodePembayaranController::class, 'update'])->name('update-mp');
+Route::post('metode-pembayaran/delete/{id}', [MetodePembayaranController::class, 'destroy'])->name('hapus-mp');

@@ -32,8 +32,8 @@
                         <i class="bi bi-cart3"></i>
                         <span class="pt-1">Data Transaksi</span>
                     </a>
-                <li class="sidebar-item">
-                    <a href="{{  url('kelola-produk')   }}  " class='sidebar-link'>
+                <li class="sidebar-item {{ request()->is('kelola-metode-pembayaran*' ) ? 'active' : '' }}">
+                    <a href="{{  url('kelola-metode-pembayaran')  }}" class='sidebar-link'>
                         <i class="bi bi-cash"></i>
                         <span class="pt-1">Metode Pembayaran</span>
                     </a>

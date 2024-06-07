@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\dtTransaksi;
 use App\Models\Transaksi;
 
+use App\Models\MetodePembayaran;
+
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -68,7 +70,7 @@ class TransaksiController extends Controller
         $data = new Transaksi();
         $data->id_transaksi = $request->id_pesanan;
         $data->id_user = $user->id_user;
-        $data->subtotal_produk = $request->subtotal_produk;  
+        $data->subtotal_produk = $request->subtotal_produk;
         $data->status_bayar = "Menunggu Konfirmasi";
         $data->save();
 
@@ -85,6 +87,7 @@ class TransaksiController extends Controller
     {
         $user = Auth::user();
         $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->where('id_user', $user->id_user)->first();
+        $metodePembayaran = MetodePembayaran::all();
 
         if (!$transaksi) {
             return redirect('/pemesanan')->with('error', 'Transaksi tidak ditemukan.');
@@ -96,11 +99,12 @@ class TransaksiController extends Controller
             'transaksi' => $transaksi,
             'user' => $user,
             'dataKeranjang' => $dataKeranjang,
+            'metodePembayaran' => $metodePembayaran,
         ]);
     }
 
     public function update(Request $request, $id_transaksi)
-    { 
+    {
 
         // Cari transaksi
         $transaksi = Transaksi::find($id_transaksi);

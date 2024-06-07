@@ -18,10 +18,10 @@
                     <div class="form-group mb-3">
                         <label for="rekening">Rekening Tujuan <span class="text-danger">*</span></label>
                         <select class="form-control" name="rekening" id="rekening" required>
-                            <option value="">-- Pilih Rekening --</option>
-                            <option value="BRI">BRI | 20317983264234</option>
-                            <option value="BCA">BCA | 329862492134</option>
-                            <option value="DANA">DANA | 082335511050</option>
+                                <option value="">-- Pilih Rekening --</option>
+                            @foreach ($metodePembayaran as $data)
+                                <option value="{{ $data->id_mtd_pembayaran }}">{{ $data->nama_mtd_pembayaran . " | " . $data->atas_nama_mtd_pembayaran . " | " . $data->no_rek_mtd_pembayaran}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group mb-3">
