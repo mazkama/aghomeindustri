@@ -9,24 +9,24 @@ class LaporanController extends Controller
 {
     public function index()
     {
-        $data = Transaksi::with('user')->get();
+        $dataTransaksi = Transaksi::with('user')->get();
 
         return view('pages.laporan.view', [
-            'dataTransaksi' => $data,
-            'jumlah_barang' => $data->count(),
+            'dataTransaksi' => $dataTransaksi,
+            'jumlah_barang' => $dataTransaksi->count(),
         ]);
     }
 
-    // Di dalam LaporanController
     public function filter(Request $request)
     {
-        $tanggal = $request->tanggal;
+        $tanggalAwal = $request->tanggal_awal;
+        $tanggalAkhir = $request->tanggal_akhir;
         $status = $request->status;
 
         $dataTransaksi = Transaksi::query();
 
-        if ($tanggal) {
-            $dataTransaksi->whereDate('created_at', $tanggal);
+        if ($tanggalAwal && $tanggalAkhir) {
+            $dataTransaksi->whereBetween('created_at', [$tanggalAwal, $tanggalAkhir]);
         }
 
         if ($status) {
@@ -37,5 +37,4 @@ class LaporanController extends Controller
 
         return view('pages.laporan.view', compact('dataTransaksi'));
     }
-
 }
