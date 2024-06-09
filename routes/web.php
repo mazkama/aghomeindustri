@@ -9,6 +9,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\PembayaranController; 
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\KelolaTransaksiController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,3 +99,6 @@ Route::post('metode-pembayaran', [MetodePembayaranController::class, 'store'])->
 Route::get('metode-pembayaran/edit/{id}', [MetodePembayaranController::class, 'edit'])->name('edit-mp');
 Route::put('metode-pembayaran/edit/{id}', [MetodePembayaranController::class, 'update'])->name('update-mp');
 Route::post('metode-pembayaran/delete/{id}', [MetodePembayaranController::class, 'destroy'])->name('hapus-mp');
+
+Route::get('laporan', [LaporanController::class, 'index']);
+Route::get('/laporan/filter', [LaporanController::class, 'filter'])->name('laporan.filter');
