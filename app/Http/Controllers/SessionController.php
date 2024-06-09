@@ -40,9 +40,12 @@ class SessionController extends Controller
     
             // Periksa peran pengguna
             if ($user->role === 'Customer') {
-                $successMessage = 'Anda berhasil masuk sebagai <br>' . Auth::user()->name;
+                $successMessage = 'Anda berhasil masuk sebagai <br>' . Auth::user()->nama;
                 return redirect('beranda')->with('success', $successMessage);
-            } else {
+            } elseif($user->role === 'Admin'){
+                $successMessage = 'Anda berhasil masuk sebagai <br>' . Auth::user()->nama;
+                return redirect('kelola-produk')->with('success', $successMessage);
+            }else {
                 // Jika peran tidak sesuai (misalnya Admin), logout dan kembalikan ke halaman login
                 Auth::logout();
                 return redirect('login')->with('error', 'Username atau Password Salah!');

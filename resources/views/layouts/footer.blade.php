@@ -8,7 +8,7 @@
                 <ul class="list-unstyled text-light footer-link-list">
                     <li>
                         <i class="fas fa-map-marker-alt fa-fw"></i>
-                        Tawang, Kec. Wates, Kabupaten Kediri, <span style="margin-left:25px;">Jawa Timur 64174</span>
+                        <a class="text-decoration-none" href="https://maps.app.goo.gl/hFpcuHkKPgX1LvPJA">Tawang, Kec. Wates, Kabupaten Kediri, <span style="margin-left:25px;">Jawa Timur 64174</span></a>
                     </li>
                     <li>
                         <i class="fa fa-phone fa-fw"></i>
