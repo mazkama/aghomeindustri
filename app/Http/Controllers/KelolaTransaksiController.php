@@ -90,6 +90,7 @@ class KelolaTransaksiController extends Controller
     {  
         // Mengambil transaksi yang ingin dihapus
         $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->first();
+        $pembayaran = Pembayaran::where('id_transaksi', $id_transaksi)->first()->delete();
 
         if (!$transaksi) {
             return redirect('/pemesanan')->with('error', 'Transaksi tidak ditemukan.');
