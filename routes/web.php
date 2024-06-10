@@ -78,7 +78,7 @@ Route::middleware(['auth','role:Admin'])->group(function (){
     Route::get('/kelola-transaksi/edit/{id}', [KelolaTransaksiController::class, 'edit'])->name('kelolaTransaksi.edit');
     Route::put('/kelola-transaksi/update/{id}', [KelolaTransaksiController::class, 'update'])->name('kelolaTransaksi.update');
     Route::post('/kelola-transaksi/{id}/update-status', [KelolaTransaksiController::class, 'updateStatus'])->name('kelolaTransaksi.updateStatus');
-    Route::delete('/kelola-transaksi/{id_transaksi}', [TransaksiController::class, 'delete'])->name('kelolaTransaksi.delete');
+    Route::post('/kelola-transaksi/{id_transaksi}', [KelolaTransaksiController::class, 'destroy'])->name('kelolaTransaksi.delete');
 
     //Route Metode Pembayaran
     Route::get('kelola-metode-pembayaran', [MetodePembayaranController::class, 'index']);

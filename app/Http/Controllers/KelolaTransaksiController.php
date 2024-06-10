@@ -86,19 +86,21 @@ class KelolaTransaksiController extends Controller
         return redirect()->back()->with('success', 'Status transaksi berhasil diperbarui.');
     }
     
-    public function delete($id_transaksi)
-    {
-        // Temukan transaksi berdasarkan ID
-        $transaksi = Transaksi::find($id_transaksi);
+    public function destroy($id_transaksi)
+    {  
+        // Mengambil transaksi yang ingin dihapus
+        $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->first();
 
-        // Periksa apakah transaksi ditemukan
         if (!$transaksi) {
-            return redirect()->back()->with('error', 'Transaksi tidak ditemukan.');
+            return redirect('/pemesanan')->with('error', 'Transaksi tidak ditemukan.');
         }
 
-        // Hapus transaksi
+        // Menghapus dtTransaksi yang terkait dengan transaksi ini
+        dtTransaksi::where('id_transaksi', $id_transaksi)->delete();
+
+        // Menghapus transaksi
         $transaksi->delete();
 
-        return redirect()->back()->with('success', 'Transaksi berhasil dihapus.');
+        return redirect('/kelola-transaksi')->with('success', 'Transaksi berhasil dihapus.');
     }
 }
