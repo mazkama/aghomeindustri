@@ -144,10 +144,10 @@
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item text-right">
                                                 Jumlah
-                                                <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="1">
                                             </li>
                                             <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
-                                            <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
+                                            <li class="list-inline-item"><input type="number"
+                                            style="width: 60px; height: 30px; padding: 5px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9; color: #333; font-size: 14px;" name="jumlah_produk" id="jumlah_produk" value="1" min="1"></li>
                                             <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
                                         </ul>
                                     </div>

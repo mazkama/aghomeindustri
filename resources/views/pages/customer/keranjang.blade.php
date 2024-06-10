@@ -3,10 +3,7 @@
 @section('content')
 
 <div class="container my-4">
-    <h4><b>Keranjang Pemesanan</b></h4>
-    @if(!$dataKeranjang->isEmpty())
-    <a href="{{ route('transaksi.create') }}" class="btn btn-success my-3">Lanjut ke Transaksi</a>
-    @endif
+    <h2><b>Keranjang Pemesanan</b></h2>
     <table class="table table-bordered table-hover ">
         <thead>
             <tr class="table-success">
@@ -75,6 +72,10 @@
             @endif
         </tbody>
     </table> 
-
+    @if(!$dataKeranjang->isEmpty())
+    <div style="display: flex; justify-content: flex-end;">
+        <a href="{{ route('transaksi.create') }}" class="btn btn-success my-3">Lanjut ke Transaksi</a>
+    </div>
+    @endif
 </div>
 @endsection

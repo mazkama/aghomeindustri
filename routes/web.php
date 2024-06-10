@@ -67,6 +67,7 @@ Route::middleware(['auth','role:Customer'])->group(function (){
     Route::post('pemesanan/add/insert', [TransaksiController::class, 'store'])->name('transaksi.store'); 
     Route::put('pemesanan/update/{id_transaksi}', [TransaksiController::class, 'update'])->name('transaksi.update');
 
+    Route::get('detail-produk/{id}', [ProdukController::class, 'detail'])->name('produk.detail');
 });
 
 Route::middleware(['auth','role:Admin'])->group(function (){ 
@@ -89,7 +90,7 @@ Route::middleware(['auth','role:Admin'])->group(function (){
 
     //Route Admin Produk
     Route::get('kelola-produk', [ProdukController::class, 'kelola'])->name('produk.view');
-    Route::get('detail-produk/{id}', [ProdukController::class, 'detail'])->name('produk.detail');
+    
     Route::get('tambah-produk', [ProdukController::class, 'create'])->name('produk.create');
     Route::post('produk', [ProdukController::class, 'store'])->name('produk.store');
     Route::get('produk/edit/{id}', [ProdukController::class, 'edit'])->name('produk.edit');
