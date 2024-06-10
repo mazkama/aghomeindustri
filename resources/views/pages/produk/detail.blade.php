@@ -101,6 +101,7 @@
                                 </li>
                             </ul> -->
 
+                            <h6>Stok :</h6><p>{{ $data->stok }}</p>
                             <h6>Deskripsi :</h6>
                             <p>{{ $data->deskripsi_produk }}</p>
                             
@@ -209,6 +210,7 @@
     const btnPlus = document.getElementById('btn-plus');
     const varValue = document.getElementById('var-value');
     const jumlahProduk = document.getElementById('jumlah_produk');
+    const stok = {{ $data->stok }};
 
     // Tambahkan event listener untuk tombol minus
     btnMinus.addEventListener('click', function() {
@@ -221,9 +223,13 @@
 
     // Tambahkan event listener untuk tombol plus
     btnPlus.addEventListener('click', function() {
-        // Tambahkan nilai jumlah_produk
-        jumlahProduk.value = parseInt(jumlahProduk.value) + 1;
-        varValue.textContent = jumlahProduk.value;
+        if (parseInt(jumlahProduk.value) < stok) {
+            // Tambahkan nilai jumlah_produk
+            jumlahProduk.value = parseInt(jumlahProduk.value) + 1;
+            varValue.textContent = jumlahProduk.value;
+        } else {
+            alert('Jumlah stok yang anda pilih tinggal '+ stok);
+        }
     });
 </script>
     <!-- End Slider Script -->

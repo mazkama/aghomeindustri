@@ -63,7 +63,11 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <a href="{{ route('produk.detail', $data->kode_produk) }}" class="h3 text-decoration-none"><b>{{$data->nama_produk}}</b></a>
+                            @if($data->stok > 0)
+                                <a href="{{ route('produk.detail', $data->kode_produk) }}" class="h3 text-decoration-none"><b>{{$data->nama_produk}}</b></a>
+                            @else
+                                <a href="javascript:void(0)" class="h3 text-decoration-none disabled" style="pointer-events: none; color: grey;"><b>{{$data->nama_produk}}(Stok Habis)</b></a>
+                            @endif
                             <ul class="w-100 list-unstyled d-flex justify-content-between mb-0 pt-3">
                                 <li style="text-indent: 30px; ">{{$data->deskripsi_produk}}</li>
                                 <li class="pt-2">

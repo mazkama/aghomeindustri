@@ -80,7 +80,7 @@ class KelolaTransaksiController extends Controller
             $transaksi->status_bayar = "Diproses";
             foreach ($jumlah_produk as $pesanan){
                 $produk = \DB::table('produk')->where('kode_produk', $pesanan->kode_produk)->first()->stok;
-                if($produk > $pesanan->jumlah_produk){
+                if($produk >= $pesanan->jumlah_produk){
                     $produk = \DB::table('produk')->where('kode_produk', $pesanan->kode_produk)->decrement('stok',$pesanan->jumlah_produk);
                 }
             }
