@@ -68,6 +68,10 @@ Route::middleware(['auth','role:Customer'])->group(function (){
     Route::put('pemesanan/update/{id_transaksi}', [TransaksiController::class, 'update'])->name('transaksi.update');
 
     Route::get('detail-produk/{id}', [ProdukController::class, 'detail'])->name('produk.detail');
+
+    //Route Pembayaran
+    Route::get('/pembayaran/create/{id_transaksi}', [PembayaranController::class, 'create'])->name('pembayaran.create');
+    Route::post('/pembayaran/store/{id_transaksi}', [PembayaranController::class, 'store'])->name('pembayaran.store');
 });
 
 Route::middleware(['auth','role:Admin'])->group(function (){ 
@@ -96,10 +100,6 @@ Route::middleware(['auth','role:Admin'])->group(function (){
     Route::get('produk/edit/{id}', [ProdukController::class, 'edit'])->name('produk.edit');
     Route::put('produk/edit/{id}', [ProdukController::class, 'update'])->name('produk.update');
     Route::post('produk/delete/{id}', [ProdukController::class, 'destroy'])->name('produk.delete');
-
-    //Route Pembayaran
-    Route::get('/pembayaran/create/{id_transaksi}', [PembayaranController::class, 'create'])->name('pembayaran.create');
-    Route::post('/pembayaran/store/{id_transaksi}', [PembayaranController::class, 'store'])->name('pembayaran.store');
 
     //Route Laporan
     Route::get('laporan', [LaporanController::class, 'index']);

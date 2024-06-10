@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\dtTransaksi;
 use App\Models\Transaksi;
-use App\Models\User;
 use App\Models\Pembayaran;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class KelolaTransaksiController extends Controller
@@ -61,17 +63,27 @@ class KelolaTransaksiController extends Controller
 
     public function updateStatus(Request $request, $id_transaksi)
     {
+        $user = Auth::user();
         // Validasi data input
         $request->validate([
             'action' => 'required|string', // Menambahkan validasi untuk aksi (konfirmasi atau hapus)
         ]);
-
+        
         // Cari transaksi
-        $transaksi = Transaksi::findOrFail($id_transaksi);
-
+        $transaksi = Transaksi::findOrFail($id_transaksi)->first();
+        // Ambil data dari request
+        
+        $jumlah_produk = \DB::table('detail_tr')->get();
+    
         if ($request->action == 'konfirmasi') {
             // Update status bayar transaksi menjadi "Diproses"
             $transaksi->status_bayar = "Diproses";
+            foreach ($jumlah_produk as $pesanan){
+                $produk = \DB::table('produk')->where('kode_produk', $pesanan->kode_produk)->first()->stok;
+                if($produk > $pesanan->jumlah_produk){
+                    $produk = \DB::table('produk')->where('kode_produk', $pesanan->kode_produk)->decrement('stok',$pesanan->jumlah_produk);
+                }
+            }
             $transaksi->save();
         } elseif ($request->action == 'hapus') {
             // Ubah status bayar transaksi menjadi "Pembayaran Gagal"
@@ -90,7 +102,6 @@ class KelolaTransaksiController extends Controller
     {  
         // Mengambil transaksi yang ingin dihapus
         $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->first();
-        $pembayaran = Pembayaran::where('id_transaksi', $id_transaksi)->first()->delete();
 
         if (!$transaksi) {
             return redirect('/pemesanan')->with('error', 'Transaksi tidak ditemukan.');

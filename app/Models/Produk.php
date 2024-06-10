@@ -11,4 +11,9 @@ class Produk extends Model
     protected $table = 'produk';
     protected $primaryKey = 'kode_produk';
     protected $fillable = ['kode_produk','nama_produk','deskripsi_produk','stok','harga','ukuran','foto'];
+
+    public function dttransaksi()
+    {
+        return $this->hasMany(dtTransaksi::class, 'kode_produk', 'kode_produk');
+    }
 }
