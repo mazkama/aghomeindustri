@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\dtTransaksi;
-use App\Models\User;
+use App\Models\User; 
+use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -12,9 +13,10 @@ class CustomerController extends Controller
 {
     public function landing()
     {
+        $dataProduk = Produk::orderBy('created_at', 'desc')->take(3)->get();
         $user = Auth::user();
         $data = dtTransaksi::with('produk')->where('id_user', $user->id_user)->get();
-        return view('home', ['jumlah_barang' => $data->count(),]);
+        return view('home', ['jumlah_barang' => $data->count(),],['dataProduk' => $dataProduk]);
     }
 
     //Profile
@@ -43,7 +45,7 @@ class CustomerController extends Controller
         $this ->validate($request, [
                 'nama' => 'required',
                 'alamat' => 'required',
-                'nohp' => 'required|numeric|digits_between:12,13',
+                'nohp' => 'required|numeric',
         ],$message);
                 
         // Ambil user yang sedang terautentikasi
@@ -51,6 +53,7 @@ class CustomerController extends Controller
         $user-> nama = $request-> nama;
         $user-> alamat = $request-> alamat;
         $user-> nohp = $request-> nohp;
+
         $user-> update();
     
     // Redirect ke halaman profil dengan pesan sukses

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class ProdukController extends Controller
 {
     public function kelola()
-    {
+    {   
         $data = Produk::all();
         return view('pages.produk.view', ['dataProduk' => $data]);
     }

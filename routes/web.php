@@ -48,10 +48,10 @@ Route::middleware(['auth','role:Customer'])->group(function (){
     Route::put('cutomer/update-password', [CustomerController::class, 'updatePassword'])->name('customer.update-password');
 
     //Route Profil Customer
-    Route::get('customer/profile', [CustomerController::class, 'show'])->name('customer.profile');
-    Route::get('customer/profile/password', [CustomerController::class, 'password'])->name('customer.password');
-    Route::put('cutomer/update-profile', [CustomerController::class, 'updateProfile'])->name('customer.update-profile');
-    Route::put('cutomer/update-password', [CustomerController::class, 'updatePassword'])->name('customer.update-password');
+    // Route::get('customer/profile', [CustomerController::class, 'show'])->name('customer.profile');
+    // Route::get('customer/profile/password', [CustomerController::class, 'password'])->name('customer.password');
+    // Route::put('cutomer/update-profile', [CustomerController::class, 'updateProfile'])->name('customer.update-profile');
+    // Route::put('cutomer/update-password', [CustomerController::class, 'updatePassword'])->name('customer.update-password');
 
     //Route Keranjang
     Route::get('keranjang', [KeranjangController::class, 'index'])->name('keranjang');

@@ -67,8 +67,7 @@
                                 </td>
                                 <td><span class="badge {{ $data->status_bayar === 'Menunggu Konfirmasi' ? 'bg-warning' : ($data->status_bayar === 'Menunggu Pembayaran' ? 'bg-info' : ($data->status_bayar === 'Menunggu Konfirmasi Pembayaran' ? 'bg-primary' : ($data->status_bayar === 'Pembayaran Gagal' ? 'bg-danger' : ($data->status_bayar === 'Diproses' ? 'bg-secondary' : ($data->status_bayar === 'Dikirim' ? 'bg-dark' : ($data->status_bayar === 'Selesai' ? 'bg-success' : 'bg-secondary')))))) }}">{{ $data->status_bayar }}</span></td>
 
-                                <td>
-                                    
+                                <td> 
                                     <form action="{{ route('kelolaTransaksi.delete', $data->id_transaksi) }}" method="post">
                                         @csrf
                                         <a href="{{ route('kelolaTransaksi.edit', $data->id_transaksi) }}" class="btn btn-warning"><i class="bi bi-pencil-square" aria-hidden="true"></i></a>
