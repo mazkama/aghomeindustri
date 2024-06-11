@@ -26,17 +26,21 @@
                         <li class="submenu-item  {{ request()->is('kelola-produk') ? 'active' : '' }}">
                             <a href="{{  url('kelola-produk')   }}">Lihat Produk</a>
                         </li>
-                    </ul>  
-                <li class="sidebar-item">
-                    <a href="{{  url('kelola-produk')   }}  " class='sidebar-link'>
+                    </ul>
+                <li class="sidebar-item {{ request()->is('pengaturan' ) ? 'active' : '' }}">
+                    <a href="{{  url('pengaturan')}}" class='sidebar-link'>
                         <i class="bi bi-person"></i>
                         <span class="pt-1">Profil</span>
                     </a>
-                <li class="sidebar-item">
-                    <a href="{{  url('kelola-produk')   }}  " class='sidebar-link'>
-                        <i class="bi bi-person"></i>
-                        <span class="pt-1">Logout</span>
-                    </a>
+                <li class="mt-3 sidebar-item {{ request()->is('logout' ) ? 'active' : '' }}">
+                    <form action="{{ route('logout') }}" method="POST" class='sidebar-link' style="display: inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-link p-0" style="color: inherit; text-decoration: none;">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            <span class="pt-1">Logout</span>
+                        </button>
+                    </form>
+                </li>
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
