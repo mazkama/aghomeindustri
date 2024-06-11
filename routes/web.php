@@ -9,6 +9,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\PembayaranController; 
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\KelolaTransaksiController;
+use App\Http\Controllers\KelolaUserController;
 use App\Http\Controllers\LaporanController;
 
 /*
@@ -104,4 +105,10 @@ Route::middleware(['auth','role:Admin'])->group(function (){
     //Route Laporan
     Route::get('laporan', [LaporanController::class, 'index']);
     Route::get('/laporan/filter', [LaporanController::class, 'filter'])->name('laporan.filter');
+
+    //Route Kelola User
+    Route::get('kelola-user', [KelolaUserController::class,'index'])->name('kelola.user.view');
+    Route::get('tambah-user', [KelolaUserController::class,'create'])->name('kelola.user.create');
+    Route::post('user', [KelolaUserController::class,'store'])->name('kelola.user.store');
+    Route::post('kelola-user/delete/{id}',[KelolaUserController::class,'index'])->name('kelola.user.delete');
 });
