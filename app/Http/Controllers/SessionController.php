@@ -35,27 +35,7 @@ class SessionController extends Controller
 
         $remember = $request->has('remember');
 
-        if (Auth::attempt($infologin, $remember)) {
-            $user = Auth::user();
-    
-            // Periksa peran pengguna
-            if ($user->role === 'Customer') {
-                $successMessage = 'Anda berhasil masuk sebagai <br>' . Auth::user()->nama;
-                return redirect('beranda')->with('success', $successMessage);
-            } elseif($user->role === 'Admin'){
-                $successMessage = 'Anda berhasil masuk sebagai <br>' . Auth::user()->nama;
-                return redirect('kelola-produk')->with('success', $successMessage);
-            } elseif($user->role === 'Gudang'){
-                $successMessage = 'Anda berhasil masuk sebagai <br>' . Auth::user()->nama;
-                return redirect('kelola-produk')->with('success', $successMessage);
-            }else {
-                // Jika peran tidak sesuai (misalnya Admin), logout dan kembalikan ke halaman login
-                Auth::logout();
-                return redirect('login')->with('error', 'Username atau Password Salah!');
-            }
-        } else {
-            return redirect('login')->with('error', 'Username atau Password Salah!');
-        }
+        
     }
 
     function logout(){
