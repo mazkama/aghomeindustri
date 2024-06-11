@@ -11,7 +11,7 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
+
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
@@ -53,7 +53,7 @@
 
 </head>
 
-<body> 
+<body>
     <div id="app">
         <!-- SIDEBAR -->
         @include('sidebars.sidebarAdmin')
@@ -94,7 +94,7 @@
 
     <script src="{{asset('assets/js/extensions/sweetalert2.js')}}"></script>
     <script src="{{asset('assets/vendors/sweetalert2/sweetalert2.all.min.js')}}"></script>
- 
+
 </body>
 
 </html>
