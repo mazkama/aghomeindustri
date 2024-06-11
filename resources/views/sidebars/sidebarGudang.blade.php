@@ -12,7 +12,7 @@
         </div>   -->
         <div class="sidebar-menu">
             <ul class="menu">
-                <li class="sidebar-title">Menu Admin</li>
+                <li class="sidebar-title">Menu Gudang</li>
 
                 <li class="sidebar-item has-sub  {{ request()->is('tambah-produk','kelola-produk') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
@@ -26,31 +26,16 @@
                         <li class="submenu-item  {{ request()->is('kelola-produk') ? 'active' : '' }}">
                             <a href="{{  url('kelola-produk')   }}">Lihat Produk</a>
                         </li>
-                    </ul>
-                <li class="sidebar-item  {{ request()->is('kelola-transaksi*' ) ? 'active' : '' }}">
-                    <a href="{{  url('kelola-transaksi')   }}  " class='sidebar-link'>
-                        <i class="bi bi-cart3"></i>
-                        <span class="pt-1">Data Transaksi</span>
-                    </a>
-                <li class="sidebar-item {{ request()->is('kelola-metode-pembayaran*' ) ? 'active' : '' }}">
-                    <a href="{{  url('kelola-metode-pembayaran')  }}" class='sidebar-link'>
-                        <i class="bi bi-cash"></i>
-                        <span class="pt-1">Metode Pembayaran</span>
-                    </a>
-                <li class="sidebar-item">
-                    <a href="{{  url('kelola-produk')   }}  " class='sidebar-link'>
-                        <i class="bi bi-people"></i>
-                        <span class="pt-1">Data User</span>
-                    </a>
-                <li class="sidebar-item">
-                    <a href="{{  url('laporan')   }}  " class='sidebar-link'>
-                        <i class="bi bi-bi bi-file-earmark-bar-graph"></i>
-                        <span class="pt-1">Laporan</span>
-                    </a>
+                    </ul>  
                 <li class="sidebar-item">
                     <a href="{{  url('kelola-produk')   }}  " class='sidebar-link'>
                         <i class="bi bi-person"></i>
                         <span class="pt-1">Profil</span>
+                    </a>
+                <li class="sidebar-item">
+                    <a href="{{  url('kelola-produk')   }}  " class='sidebar-link'>
+                        <i class="bi bi-person"></i>
+                        <span class="pt-1">Logout</span>
                     </a>
             </ul>
         </div>
