@@ -31,6 +31,9 @@ Route::get('/', function () {
 Route::get('/tentang', function () {
     return view('tentang');
 });    
+Route::get('/pengaturan', function () {
+    return view('pages.pengaturan');
+});    
 
 Route::get('login', [SessionController::class, 'loginclass']);
 Route::post('loginsukses', [SessionController::class, 'login']);

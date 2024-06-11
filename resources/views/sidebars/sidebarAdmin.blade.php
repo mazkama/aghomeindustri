@@ -42,16 +42,26 @@
                         <i class="bi bi-people"></i>
                         <span class="pt-1">Data User</span>
                     </a>
-                <li class="sidebar-item">
+                <li class="sidebar-item  {{ request()->is('laporan*' ) ? 'active' : '' }}">
                     <a href="{{  url('laporan')   }}  " class='sidebar-link'>
                         <i class="bi bi-bi bi-file-earmark-bar-graph"></i>
                         <span class="pt-1">Laporan</span>
                     </a>
-                <li class="sidebar-item">
-                    <a href="{{  url('kelola-produk')   }}  " class='sidebar-link'>
+                <li class="sidebar-item {{ request()->is('pengaturan' ) ? 'active' : '' }}">
+                    <a href="{{  url('pengaturan')}}" class='sidebar-link'>
                         <i class="bi bi-person"></i>
                         <span class="pt-1">Profil</span>
                     </a>
+                <li class="mt-3 sidebar-item {{ request()->is('logout' ) ? 'active' : '' }}">
+                    <form action="{{ route('logout') }}" method="POST" class='sidebar-link' style="display: inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-link p-0" style="color: inherit; text-decoration: none;">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            <span class="pt-1">Logout</span>
+                        </button>
+                    </form>
+                </li>
+
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
