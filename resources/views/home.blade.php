@@ -55,8 +55,8 @@
                             <h1 class="h1 text-success">Solusi Praktis Dan Elegan Untuk Kebutuhan Anda.</h1>
                             <h3 class="h2">Menjadikannya pilihan sempurna untuk acara apapun.</h3>
                             <p>
-                            Percayakan kebutuhan kemasan nasi Anda pada AG Home Industri,
-                            karena kami mengutamakan <strong>kualitas</strong> dan <strong>kepuasan pelanggan.</strong>
+                                Percayakan kebutuhan kemasan nasi Anda pada AG Home Industri,
+                                karena kami mengutamakan <strong>kualitas</strong> dan <strong>kepuasan pelanggan.</strong>
                             </p>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                             <h1 class="h1 text-success">Untuk Momen Spesial Dalam Hidup Anda.</h1>
                             <h3 class="h2">Desain menawan dan material berkualitas menambah kesan istimewa pada pernikahan Anda.</h3>
                             <p>
-                            Jadikan setiap detail pernikahan Anda sempurna dengan produk unggulan dari AGHome Industri, pilihan terbaik untuk hantaran seserahan Anda.
+                                Jadikan setiap detail pernikahan Anda sempurna dengan produk unggulan dari AGHome Industri, pilihan terbaik untuk hantaran seserahan Anda.
                             </p>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
 <!-- End Banner Hero -->
 
 <!-- Start Categories of The Month -->
-<section class="container py-5">
+<!-- <section class="container py-5">
     <div class="row text-center pt-3">
         <div class="col-lg-6 m-auto">
             <h1 class="h1">Kategori</h1>
@@ -124,7 +124,7 @@
             <p class="text-center mt-auto"><a class="btn btn-success">Go Shop</a></p>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- End Categories of The Month -->
 
@@ -133,14 +133,14 @@
     <div class="container py-5">
         <div class="row text-center py-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Best Seller</h1>
+                <h1 class="h1 text-success"><b>Produk Terbaru</b></h1>
                 <p>
                     Produk-produk yang paling diminati oleh pelanggan kami karena kreatifitasnya yang luar biasa dan dampak lingkungannya yang positif.
                 </p>
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-4 mb-4">
+            <!-- <div class="col-12 col-md-4 mb-4">
                 <div class="card h-100">
                     <a href="shop-single.html">
                         <img src="assets/images/produk/images (1).jpeg" class="card-img-top" alt="...">
@@ -187,31 +187,25 @@
                         <p class="text-muted">Reviews (48)</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
+            @foreach ($dataProduk as $data)
             <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
-                    <a href="shop-single.html">
-                        <img src="assets/images/produk/download.jpeg" class="card-img-top" alt="...">
+                <div class="card h-90">
+                    <a href="{{ route('produk.detail', $data->kode_produk) }}">
+                        <img src="{{ asset('storage/' . $data->foto) }}" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body">
                         <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">Rp 150.000</li>
+                            <li class="text-success text-right">Rp.{{ $data->harga }}</li>
                         </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Kotak Seserahan</a>
-                        <p class="card-text">
-                            Pilihan sempurna untuk menyimpan dan menghias perhiasan ter istimewa yang khusus untuk anda.
-                        </p>
-                        <p class="text-muted">Reviews (74)</p>
+                        <a href="{{ route('produk.detail', $data->kode_produk) }}" class="h2 text-decoration-none text-dark">{{$data->nama_produk}}</a>
+                        <p class="card-text">{{$data->deskripsi_produk}}</p>
+                        <p class="text-success"></p>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </section>
