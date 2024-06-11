@@ -69,3 +69,48 @@ Route::middleware(['auth', 'role:Customer'])->group(function () {
     Route::get('/pembayaran/create/{id_transaksi}', [PembayaranController::class, 'create'])->name('pembayaran.create');
     Route::post('/pembayaran/store/{id_transaksi}', [PembayaranController::class, 'store'])->name('pembayaran.store');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::middleware(['role:Admin,Gudang'])->group(function () {
+        Route::get('kelola-produk', [ProdukController::class, 'kelola'])->name('produk.view');
+        
+        Route::get('tambah-produk', [ProdukController::class, 'create'])->name('produk.create');
+        Route::post('produk', [ProdukController::class, 'store'])->name('produk.store');
+        Route::get('produk/edit/{id}', [ProdukController::class, 'edit'])->name('produk.edit');
+        Route::put('produk/edit/{id}', [ProdukController::class, 'update'])->name('produk.update');
+        Route::post('produk/delete/{id}', [ProdukController::class, 'destroy'])->name('produk.delete');
+
+        // Rute khusus Admin
+        Route::middleware('role:Admin')->group(function () {
+            //Route Kelola Transaksi
+            Route::get('kelola-transaksi', [KelolaTransaksiController::class, 'index'])->name('kelolaTransaksi.view');
+            Route::get('/kelola-transaksi/edit/{id}', [KelolaTransaksiController::class, 'edit'])->name('kelolaTransaksi.edit');
+            Route::put('/kelola-transaksi/update/{id}', [KelolaTransaksiController::class, 'update'])->name('kelolaTransaksi.update');
+            Route::post('/kelola-transaksi/{id}/update-status', [KelolaTransaksiController::class, 'updateStatus'])->name('kelolaTransaksi.updateStatus');
+            Route::post('/kelola-transaksi/{id_transaksi}', [KelolaTransaksiController::class, 'destroy'])->name('kelolaTransaksi.delete');
+
+            //Route Metode Pembayaran
+            Route::get('kelola-metode-pembayaran', [MetodePembayaranController::class, 'index']);
+            Route::get('tambah-metode-pembayaran', [MetodePembayaranController::class, 'create']);
+            Route::post('metode-pembayaran', [MetodePembayaranController::class, 'store'])->name('tambah-mp');
+            Route::get('metode-pembayaran/edit/{id}', [MetodePembayaranController::class, 'edit'])->name('edit-mp');
+            Route::put('metode-pembayaran/edit/{id}', [MetodePembayaranController::class, 'update'])->name('update-mp');
+            Route::post('metode-pembayaran/delete/{id}', [MetodePembayaranController::class, 'destroy'])->name('hapus-mp');
+
+            //Route Laporan
+            Route::get('laporan', [LaporanController::class, 'index']);
+            Route::get('/laporan/filter', [LaporanController::class, 'filter'])->name('laporan.filter');
+
+            //Route Kelola User
+            Route::get('kelola-user', [KelolaUserController::class, 'index'])->name('kelola.user.view');
+            Route::get('tambah-user', [KelolaUserController::class, 'create'])->name('kelola.user.create');
+            Route::post('user', [KelolaUserController::class, 'store'])->name('kelola.user.store');
+            Route::post('kelola-user/delete/{id}', [KelolaUserController::class, 'destroy'])->name('kelola.user.delete');
+        });
+
+        // Route Pengaturan Admin dan Gudang
+        Route::get('admin/profile', [PengaturanController::class, 'showadmin'])->name('admin.profile');
+        Route::put('admin/update-profile', [PengaturanController::class, 'updateProfile'])->name('admin.update-profile');
+        Route::put('admin/update-password', [PengaturanController::class, 'updatePassword'])->name('admin.update-password');
+    });
+});

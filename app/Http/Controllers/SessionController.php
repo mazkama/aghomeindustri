@@ -35,23 +35,46 @@ class SessionController extends Controller
 
         $remember = $request->has('remember');
 
-        
+        if (Auth::attempt($infologin, $remember)) {
+            $user = Auth::user();
+
+            // Periksa peran pengguna
+            if ($user->role === 'Customer') {
+                $successMessage = 'Anda berhasil masuk sebagai <br>' . Auth::user()->nama;
+                return redirect('beranda')->with('success', $successMessage);
+            } elseif ($user->role === 'Admin') {
+                $successMessage = 'Anda berhasil masuk sebagai <br>' . Auth::user()->nama;
+                return redirect('kelola-produk')->with('success', $successMessage);
+            } elseif ($user->role === 'Gudang') {
+                $successMessage = 'Anda berhasil masuk sebagai <br>' . Auth::user()->nama;
+                return redirect('kelola-produk')->with('success', $successMessage);
+            } else {
+                // Jika peran tidak sesuai (misalnya Admin), logout dan kembalikan ke halaman login
+                Auth::logout();
+                return redirect('login')->with('error', 'Username atau Password Salah!');
+            }
+        } else {
+            return redirect('login')->with('error', 'Username atau Password Salah!');
+        }
     }
 
-    function logout(){
+    function logout()
+    {
         Auth::logout();
         return redirect('login');
     }
 
-    function register(){
+    function register()
+    {
         return view('register');
     }
 
-    function create(Request $request){
+    function create(Request $request)
+    {
         Session::flash('username', $request->username);
         Session::flash('nama', $request->nama);
         Session::flash('nohp', $request->nohp);
-        
+
         $request->validate([
             'username' => 'required|unique:user',
             'password' => 'required|min:6',
@@ -72,11 +95,11 @@ class SessionController extends Controller
         ]);
 
         $data = [
-            'username'=>$request->username,
-            'password'=>$request->password,
+            'username' => $request->username,
+            'password' => $request->password,
             'nama' => $request->nama,
-            'nohp'=>$request->nohp,
-            'alamat'=>$request->alamat,
+            'nohp' => $request->nohp,
+            'alamat' => $request->alamat,
             'role' => $request->role ?? 'Customer'
         ];
         #Memasukkan Data

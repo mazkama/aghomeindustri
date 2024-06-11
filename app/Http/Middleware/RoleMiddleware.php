@@ -13,8 +13,12 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next,...$role)
+    public function handle(Request $request, Closure $next, ...$role)
     {
-        
+        if (Auth::check() && in_array(Auth::user()->role, $role)) {
+            return $next($request);
+        } elseif (!Auth::check() || Auth::user()->role !== $role) {
+            abort(403, 'User tidak ditemukan!');
+        }
     }
 }
