@@ -1,10 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
-use App\Models\dtTransaksi;
-use App\Models\User; 
-use App\Models\Produk; 
+use Illuminate\Support\Facades\Auth; 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -82,6 +79,6 @@ class PengaturanController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        return view('pages.customer.ubah-password')->with('editpasswordSuccess', 'Password berhasil diubah.');
+        return view('pages.pengaturan')->with('editpasswordSuccess', 'Password berhasil diubah.');
     }
 }

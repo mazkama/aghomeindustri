@@ -18,7 +18,9 @@
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><p>Pengaturan</p></li>
+                            <li class="breadcrumb-item">
+                                <p>Pengaturan</p>
+                            </li>
                         </ol>
                     </nav>
                 </div>
@@ -99,54 +101,47 @@
                         </div>
                         <div class="card-content" style="margin-top: -30px;">
                             @if(Auth::check())
-                                <div class="card-body">
-                                    <form class="form form-horizontal">
-                                        <div class="form-body">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label>Nama </label>
-                                                </div>
-                                                <div class="col-md-8 form-group">
-                                                    <input type="text" id="nama" class="form-control" name="nama"
-                                                        value="{{ Auth::user()->nama }}">
-                                                    @error('nama')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>Nomor Hp</label>
-                                                </div>
-                                                <div class="col-md-8 form-group">
-                                                    <input type="number" id="nohp" class="form-control" name="nohp"
-                                                        value="{{ Auth::user()->nohp }}">
-                                                    @error('nohp')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>Alamat</label>
-                                                </div>
-                                                <div class="col-md-8 form-group">
-                                                    <input type="text" id="alamat" class="form-control" name="alamat"
-                                                        value="{{ Auth::user()->alamat }}">
-                                                    @error('alamat')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-sm-12 d-flex justify-content-end">
-
-                                                    <form action="{{ route('admin.update-profile') }}" method="post"
-                                                        class="mr-2 d-inline" title="Update Profile">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button type="submit" class="btn btn-primary me-1 mb-1">Update
-                                                            Profile</button>
-                                                    </form>
-                                                </div>
+                            <div class="card-body">
+                                <form action="{{ route('admin.update-profile') }}" method="POST" class="form form-horizontal">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Nama </label>
+                                            </div>
+                                            <div class="col-md-8 form-group">
+                                                <input type="text" id="nama" class="form-control" name="nama" value="{{ Auth::user()->nama }}">
+                                                @error('nama')
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Nomor Hp</label>
+                                            </div>
+                                            <div class="col-md-8 form-group">
+                                                <input type="number" id="nohp" class="form-control" name="nohp" value="{{ Auth::user()->nohp }}">
+                                                @error('nohp')
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Alamat</label>
+                                            </div>
+                                            <div class="col-md-8 form-group">
+                                                <input type="text" id="alamat" class="form-control" name="alamat" value="{{ Auth::user()->alamat }}">
+                                                @error('alamat')
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-sm-12 d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary me-1 mb-1">Update
+                                                    Profile</button>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
+                            </div>
                             @endif
                         </div>
                     </div>
@@ -158,37 +153,32 @@
                         </div>
                         <div class="card-content" style="margin-top: -30px;">
                             <div class="card-body">
-                                <form class="form form-horizontal">
+                                <form action="{{ route('admin.update-password') }}" method="POST" class="form form-horizontal">
+                                    @csrf
+                                    @method('PUT')
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label>Password Sebelumnya</label>
                                             </div>
                                             <div class="col-md-8 form-group">
-                                                <input type="password" id="old_password" class="form-control"
-                                                    name="old_password" placeholder="Masukan Password Lama">
+                                                <input type="password" id="old_password" class="form-control" name="old_password" placeholder="Masukan Password Lama">
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Password Baru</label>
                                             </div>
                                             <div class="col-md-8 form-group">
-                                                <input type="password" id="new_password" class="form-control"
-                                                    name="new_password" placeholder="Masukan Password Baru">
+                                                <input type="password" id="new_password" class="form-control" name="new_password" placeholder="Masukan Password Baru">
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Konfirmasi Password</label>
                                             </div>
                                             <div class="col-md-8 form-group">
-                                                <input type="password" id="confirm_password" class="form-control"
-                                                    name="confirm_password" placeholder="Masukan Password Konfirmasi ">
+                                                <input type="password" id="confirm_password" class="form-control" name="confirm_password" placeholder="Masukan Password Konfirmasi ">
                                             </div>
                                             <div class="col-sm-12 d-flex justify-content-end">
-                                                <form action="{{ route('admin.update-password') }}" method="post"
-                                                    class="mr-2 d-inline" title="Update Password">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <button type="submit" class="btn btn-primary me-1 mb-1">Update
-                                                        Password</button>
+                                                <button type="submit" class="btn btn-primary me-1 mb-1">Update
+                                                    Password</button>
                                             </div>
                                         </div>
                                     </div>
