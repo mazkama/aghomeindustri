@@ -36,7 +36,7 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Nomor</th>
+                                <th>No</th>
                                 <th>ID User</th>
                                 <th>Username</th>
                                 <th>Nama User</th>

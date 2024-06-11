@@ -33,7 +33,8 @@
                 <div class="card-body">
                     <table class="table table-striped" id="table1">
                         <thead>
-                            <tr> 
+                            <tr>
+                                <th>Kode Produk</th>
                                 <th>Foto Produk</th>
                                 <th>Nama Produk</th>
                                 <th>Deskripsi Produk</th>
@@ -45,7 +46,8 @@
                         </thead>
                         <tbody>
                             @foreach ($dataProduk as $data)
-                            <tr> 
+                            <tr>
+                                <td>{{ $data->kode_produk }}</td>
                                 <td><img src="{{ asset('storage/' . $data->foto) }} " width="100" height="100" alt=""></td>
                                 <td>{{ $data->nama_produk }}</td>
                                 <td>{{ $data->deskripsi_produk }}</td>
