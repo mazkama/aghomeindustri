@@ -13,12 +13,12 @@
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <h3>Data User</h3>
-                    <p class="text-subtitle text-muted">Menu edit data user</p>
+                    <p class="text-subtitle text-muted"><br></p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/produk') }}">Kelola User</a></li>
+                            <li class="breadcrumb-item">Kelola User</li>
                             <li class="breadcrumb-item active" aria-current="page">View</li>
                         </ol>
                     </nav>
@@ -27,42 +27,47 @@
         </div>
         <section class="section">
             <div class="card">
-                <div class="card-header">
-                    Kelola Produk
-                </div>
                 <div class="card-body">
+                    <p align="right" style="padding-right:10px">
+                        <a href="{{ route('kelola.user.create') }}" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Tambah Admin/Gudang
+                        </a>
+                    </p>
                     <table class="table table-striped" id="table1">
                         <thead>
-                            <tr> 
-                                <th>Foto Produk</th>
-                                <th>Nama Produk</th>
-                                <th>Deskripsi Produk</th>
-                                <th>Stok</th>
-                                <th>Harga</th>
-                                <th>Ukuran</th>
+                            <tr>
+                                <th>Nomor</th>
+                                <th>ID User</th>
+                                <th>Username</th>
+                                <th>Nama User</th>
+                                <th>Nomor Handphone</th>
+                                <th>Alamat</th>
+                                <th>Role</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($dataProduk as $data)
-                            <tr> 
-                                <td><img src="{{ asset('storage/' . $data->foto) }} " width="100" height="100" alt=""></td>
-                                <td>{{ $data->nama_produk }}</td>
-                                <td>{{ $data->deskripsi_produk }}</td>
-                                <td>{{ $data->stok }}</td>
-                                <td>{{ $data->harga }}</td>
-                                <td>{{ $data->ukuran }}</td>
-                                <td>
-                                    <form action="{{ route('produk.delete', $data->kode_produk) }}" method="post">
-                                        @csrf
-                                        <a href="{{ route('produk.edit', $data->kode_produk) }}" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#editProduk{{$data->kode_produk}}">
-                                            <i class="fa-fw select-all fas"></i>
-                                        </a>
-                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </form>
-                                    @include('modal.modalProduk',['dataProduk'=>$data])
-                                </td>
-                            </tr>
+                            <?php
+                                $number = 1;
+                            ?>
+                            @foreach ($dataUser as $data)
+                                <tr>
+                                    <td style="font-weight: bold">{{ $number++ }}</td>
+                                    <td>{{ $data->id_user }}</td>
+                                    <td>{{ $data->username }}</td>
+                                    <td>{{ $data->nama }}</td>
+                                    <td>{{ $data->nohp }}</td>
+                                    <td>{{ $data->alamat }}</td>
+                                    <td style="font-weight: bold">{{ $data->role }}</td>
+                                    <td>
+                                        <form action="{{ route('kelola.user.delete', $data->id_user) }}" method="post">
+                                            @csrf
+                                            @method('post')
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -6,9 +6,10 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\PembayaranController; 
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\KelolaTransaksiController;
+use App\Http\Controllers\KelolaUserController;
 use App\Http\Controllers\LaporanController;
 
 /*
@@ -26,14 +27,11 @@ use App\Http\Controllers\LaporanController;
 //Route Beranda
 Route::get('/', function () {
     return view('login');
-});   
+});
 
 Route::get('/tentang', function () {
-    return view('tentang');
-});    
-Route::get('/pengaturan', function () {
-    return view('pages.pengaturan');
-});    
+    return view('tentang'); 
+}); 
 
 Route::get('login', [SessionController::class, 'loginclass']);
 Route::post('loginsukses', [SessionController::class, 'login']);
@@ -41,7 +39,7 @@ Route::get('register', [SessionController::class, 'register']);
 Route::post('create', [SessionController::class, 'create']);
 Route::post('logout', [SessionController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth','role:Customer'])->group(function (){
+Route::middleware(['auth', 'role:Customer'])->group(function () {
     //Route Customer
     Route::get('beranda', [CustomerController::class, 'landing']);
     Route::get('customer/profile', [CustomerController::class, 'show'])->name('customer.profile');
@@ -64,10 +62,10 @@ Route::middleware(['auth','role:Customer'])->group(function (){
     Route::get('/belanja', [ProdukController::class, 'katalog'])->name('produk.belanja');
 
     //Route Pemesanan
-    Route::get('pemesanan', [TransaksiController::class, 'index'])->name('transaksi.view'); 
+    Route::get('pemesanan', [TransaksiController::class, 'index'])->name('transaksi.view');
     Route::get('pemesanan/add', [TransaksiController::class, 'create'])->name('transaksi.create');
-    Route::get('pemesanan/detail/{id_transaksi}', [TransaksiController::class, 'detail'])->name('transaksi.detail'); 
-    Route::post('pemesanan/add/insert', [TransaksiController::class, 'store'])->name('transaksi.store'); 
+    Route::get('pemesanan/detail/{id_transaksi}', [TransaksiController::class, 'detail'])->name('transaksi.detail');
+    Route::post('pemesanan/add/insert', [TransaksiController::class, 'store'])->name('transaksi.store');
     Route::put('pemesanan/update/{id_transaksi}', [TransaksiController::class, 'update'])->name('transaksi.update');
 
     Route::get('detail-produk/{id}', [ProdukController::class, 'detail'])->name('produk.detail');
@@ -77,11 +75,11 @@ Route::middleware(['auth','role:Customer'])->group(function (){
     Route::post('/pembayaran/store/{id_transaksi}', [PembayaranController::class, 'store'])->name('pembayaran.store');
 });
 
-Route::middleware(['auth','role:Admin'])->group(function (){ 
-    
+Route::middleware(['auth', 'role:Admin'])->group(function () {
+
 
     //Route Kelola Transaksi
-    Route::get('kelola-transaksi', [KelolaTransaksiController::class, 'index'])->name('kelolaTransaksi.view'); 
+    Route::get('kelola-transaksi', [KelolaTransaksiController::class, 'index'])->name('kelolaTransaksi.view');
     Route::get('/kelola-transaksi/edit/{id}', [KelolaTransaksiController::class, 'edit'])->name('kelolaTransaksi.edit');
     Route::put('/kelola-transaksi/update/{id}', [KelolaTransaksiController::class, 'update'])->name('kelolaTransaksi.update');
     Route::post('/kelola-transaksi/{id}/update-status', [KelolaTransaksiController::class, 'updateStatus'])->name('kelolaTransaksi.updateStatus');
@@ -97,7 +95,7 @@ Route::middleware(['auth','role:Admin'])->group(function (){
 
     //Route Admin Produk
     Route::get('kelola-produk', [ProdukController::class, 'kelola'])->name('produk.view');
-    
+
     Route::get('tambah-produk', [ProdukController::class, 'create'])->name('produk.create');
     Route::post('produk', [ProdukController::class, 'store'])->name('produk.store');
     Route::get('produk/edit/{id}', [ProdukController::class, 'edit'])->name('produk.edit');
@@ -107,4 +105,16 @@ Route::middleware(['auth','role:Admin'])->group(function (){
     //Route Laporan
     Route::get('laporan', [LaporanController::class, 'index']);
     Route::get('/laporan/filter', [LaporanController::class, 'filter'])->name('laporan.filter');
+
+    //Route Kelola User
+    Route::get('kelola-user', [KelolaUserController::class, 'index'])->name('kelola.user.view');
+    Route::get('tambah-user', [KelolaUserController::class, 'create'])->name('kelola.user.create');
+    Route::post('user', [KelolaUserController::class, 'store'])->name('kelola.user.store');
+    Route::post('kelola-user/delete/{id}', [KelolaUserController::class, 'index'])->name('kelola.user.delete');
+
+    //Route Kelola User
+    Route::get('kelola-user', [KelolaUserController::class, 'index'])->name('kelola.user.view');
+    Route::get('tambah-user', [KelolaUserController::class, 'create'])->name('kelola.user.create');
+    Route::post('user', [KelolaUserController::class, 'store'])->name('kelola.user.store');
+    Route::post('kelola-user/delete/{id}', [KelolaUserController::class, 'index'])->name('kelola.user.delete');
 });

@@ -38,7 +38,7 @@
                         <span class="pt-1">Metode Pembayaran</span>
                     </a>
                 <li class="sidebar-item">
-                    <a href="{{  url('kelola-produk')   }}  " class='sidebar-link'>
+                    <a href="{{  url('kelola-user')   }}  " class='sidebar-link'>
                         <i class="bi bi-people"></i>
                         <span class="pt-1">Data User</span>
                     </a>
