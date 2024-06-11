@@ -18,7 +18,7 @@ class KelolaUserController extends Controller
         return view('pages.kelolaUser.create');
     }
 
-    function store(Request $request){
+    function store(Request $request){ 
         $message= [
             'required'=> ':Attribute tidak boleh kosong!',
             'unique' => ':Attribute sudah ada!',
@@ -42,14 +42,15 @@ class KelolaUserController extends Controller
         $data->nohp = $request->nohp;
         $data->alamat = $request->alamat;
         $data->role = $request->role;
+        $data->save();
 
         return redirect('kelola-user')->with('success', 'Data berhasil ditambahkan!');
     }
 
     public function destroy($id_user)
     {
-        $data = User::find($id_user);
-
+        $data = User::find($id_user); 
+        
         $data->delete();
         return redirect('kelola-user')->with('success', 'Data berhasil dihapus!');
     }

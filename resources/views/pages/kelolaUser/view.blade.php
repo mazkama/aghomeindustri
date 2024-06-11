@@ -28,7 +28,7 @@
         <section class="section">
             <div class="card">
                 <div class="card-body">
-                    <p align="right" style="padding-right:10px">
+                    <p class="text-right" style="padding-right:10px">
                         <a href="{{ route('kelola.user.create') }}" class="btn btn-primary">
                             <i class="fas fa-plus"></i> Tambah Admin/Gudang
                         </a>
