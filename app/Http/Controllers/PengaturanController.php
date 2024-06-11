@@ -12,13 +12,13 @@ use Illuminate\Http\Request;
 class PengaturanController extends Controller
 {
     //Profile
-    public function show(){
+    public function showadmin(){
         $user = Auth::user();
 
         return view('pages.pengaturan', ['user' => $user]);
     }
 
-    public function password(){
+    public function showgudang(){
         $user = Auth::user();
 
         return view('pages.pengaturan', ['user' => $user]);
@@ -30,8 +30,6 @@ class PengaturanController extends Controller
         $message= [
                 'required'=> ':Attribute tidak boleh kosong!',
                 'numeric' => ':Attribute harus memakai angka!',
-                'digits_between' => ':Attribute harus antara :min dan :max digit..',
-                'telepon.numeric' => 'Nomor HP harus memakai angka!',
             ];
         // Validasi data yang diterima dari formulir
         $this ->validate($request, [

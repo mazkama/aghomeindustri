@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CustomerController;
@@ -105,5 +106,10 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('tambah-user', [KelolaUserController::class, 'create'])->name('kelola.user.create');
     Route::post('user', [KelolaUserController::class, 'store'])->name('kelola.user.store');
     Route::post('kelola-user/delete/{id}', [KelolaUserController::class, 'destroy'])->name('kelola.user.delete');
+
+    //Route Pengaturan Admin
+    Route::get('admin/profile', [PengaturanController::class, 'showadmin'])->name('admin.profile');
+    Route::put('admin/update-profile', [PengaturanController::class, 'updateProfile'])->name('admin.update-profile');
+    Route::put('admin/update-password', [PengaturanController::class, 'updatePassword'])->name('admin.update-password');
 
 });
