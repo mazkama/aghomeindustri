@@ -27,9 +27,6 @@
         </div>
         <section class="section">
             <div class="card">
-                <!-- <div class="card-header">
-                    Kelola Metode Pembayaran
-                </div> -->
                 <div class="card-body">
                     <p align="right" style="padding-right:10px">
                         <a href="{{ route('kelola.user.create') }}" class="btn btn-primary">
