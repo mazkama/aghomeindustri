@@ -48,7 +48,7 @@
                         <span class="pt-1">Laporan</span>
                     </a>
                 <li class="sidebar-item {{ request()->is('pengaturan' ) ? 'active' : '' }}">
-                    <a href="{{  url('pengaturan')}}" class='sidebar-link'>
+                    <a href="{{  route('admin.profile')}}" class='sidebar-link'>
                         <i class="bi bi-person"></i>
                         <span class="pt-1">Profil</span>
                     </a>
