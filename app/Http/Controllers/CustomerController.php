@@ -45,7 +45,7 @@ class CustomerController extends Controller
         $this ->validate($request, [
                 'nama' => 'required',
                 'alamat' => 'required',
-                'nohp' => 'required|numeric|digits_between:12,13',
+                'nohp' => 'required|numeric',
         ],$message);
                 
         // Ambil user yang sedang terautentikasi
@@ -53,6 +53,7 @@ class CustomerController extends Controller
         $user-> nama = $request-> nama;
         $user-> alamat = $request-> alamat;
         $user-> nohp = $request-> nohp;
+
         $user-> update();
     
     // Redirect ke halaman profil dengan pesan sukses

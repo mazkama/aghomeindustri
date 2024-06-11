@@ -33,7 +33,7 @@
                                 <label for="name" class="col-md-4 col-form-label">Nama</label>
                                 <div class="col-md-6">
                                     <input type="text" name="nama" id="nama" class="form-control" style="box-shadow: #59AB6E"
-                                        value="{{ old('nama') ?? Auth::user()->nama }}">
+                                        value="{{ Auth::user()->nama }}">
                                     @error('nama')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -44,7 +44,7 @@
                                 <label for="phone" class="col-md-4 col-form-label">Nomor HP</label>
                                 <div class="col-md-6">
                                     <input type="text" name="nohp" id="nohp" class="form-control"
-                                        value="{{ old('nohp') ?? Auth::user()->nohp }}">
+                                        value="{{ Auth::user()->nohp }}">
                                     @error('nohp')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -55,7 +55,7 @@
                                 <label for="dob" class="col-md-4 col-form-label">Alamat</label>
                                 <div class="col-md-6">
                                     <textarea name="alamat" id="alamat"
-                                        class="form-control">{{ old('alamat') ?? Auth::user()->alamat }}</textarea>
+                                        class="form-control">{{  Auth::user()->alamat }}</textarea>
                                     @error('alamat')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
