@@ -45,7 +45,7 @@
                                 <i class="bi bi-cash"></i>
                                 <span class="pt-1">Metode Pembayaran</span>
                             </a>
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ request()->is('kelola-user') ? 'active' : '' }}">
                             <a href="{{  url('kelola-user')   }}  " class='sidebar-link'>
                                 <i class="bi bi-people"></i>
                                 <span class="pt-1">Data User</span>
@@ -58,7 +58,7 @@
                     @endif
 
                     @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Gudang')
-                        <li class="sidebar-item {{ request()->is('pengaturan') ? 'active' : '' }}">
+                        <li class="sidebar-item {{ request()->is('profile','update-profile','update-password') ? 'active' : '' }}">
                             <a href="{{  route('admin.profile')}}" class='sidebar-link'>
                                 <i class="bi bi-person"></i>
                                 <span class="pt-1">Profil</span>

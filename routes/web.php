@@ -109,8 +109,8 @@ Route::middleware(['auth'])->group(function () {
         });
 
         // Route Pengaturan Admin dan Gudang
-        Route::get('admin/profile', [PengaturanController::class, 'showadmin'])->name('admin.profile');
-        Route::put('admin/update-profile', [PengaturanController::class, 'updateProfile'])->name('admin.update-profile');
-        Route::put('admin/update-password', [PengaturanController::class, 'updatePassword'])->name('admin.update-password');
+        Route::get('profile', [PengaturanController::class, 'showadmin'])->name('admin.profile');
+        Route::put('update-profile', [PengaturanController::class, 'updateProfile'])->name('admin.update-profile');
+        Route::put('update-password', [PengaturanController::class, 'updatePassword'])->name('admin.update-password');
     });
 });
